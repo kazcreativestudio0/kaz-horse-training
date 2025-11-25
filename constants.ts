@@ -42,59 +42,43 @@ export const IMAGES = {
   logo: getOptimizedImageUrl('https://drive.google.com/file/d/1f2KgXRF3LYODrgd0Mz2vDDQpgLqHXu-M/view?usp=sharing'), 
 
   // トップページの大きな背景画像 (横長推奨) - ウエスタン乗馬・自然の中で騎乗
-  // 広大な自然の中でウエスタン乗馬している様子
-  hero: getOptimizedImageUrl('https://images.pexels.com/photos/247477/pexels-photo-247477.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'), 
+  // イベント参加時の画像を背景に使用
+  hero: getOptimizedImageUrl('https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'), 
 
   // 「About Us」セクションの画像 (縦長推奨) - 馬と人のコミュニケーション
   // 馬と人が触れ合い、心を通わせている様子
-  about: getOptimizedImageUrl('https://images.pexels.com/photos/1617366/pexels-photo-1617366.jpeg?auto=compress&cs=tinysrgb&w=800&h=1200&fit=crop'),
+  about: '',
 
   // 馬の紹介画像 (正方形〜横長推奨) - 様々な馬の姿
   horses: [
-    // 1頭目: ウエスタンホース（クォーターホース種など）- ウエスタン競技で活躍できる調教された馬・強く美しい馬
-    getOptimizedImageUrl('https://images.pexels.com/photos/1431042/pexels-photo-1431042.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 2頭目: 和種馬・ポニー（道産子・木曽馬・ポニー）- 小柄で我慢強い、子供たちのパートナー・優しい馬
-    getOptimizedImageUrl('https://images.pexels.com/photos/204611/pexels-photo-204611.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 3頭目: 仔馬たち - 元気いっぱいに放牧場を駆け回る仔馬・可愛らしい仔馬
-    getOptimizedImageUrl('https://images.pexels.com/photos/1431042/pexels-photo-1431042.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 4頭目: 追加ギャラリー用 - ウエスタン乗馬の様子
-    getOptimizedImageUrl('https://images.pexels.com/photos/247477/pexels-photo-247477.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 5頭目: 追加ギャラリー用 - 馬と自然・放牧場
-    getOptimizedImageUrl('https://images.pexels.com/photos/1431042/pexels-photo-1431042.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 6頭目: 追加ギャラリー用 - 馬と人の触れ合い
-    getOptimizedImageUrl('https://images.pexels.com/photos/1617366/pexels-photo-1617366.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop')  
+    '', // 1頭目: ウエスタンホース（クォーターホース種など）
+    '', // 2頭目: 和種馬・ポニー（道産子・木曽馬・ポニー）
+    '', // 3頭目: 仔馬たち
+    '', // 4頭目: 追加ギャラリー用
+    '', // 5頭目: 追加ギャラリー用
+    ''  // 6頭目: 追加ギャラリー用
   ],
 
   // Aboutセクション用の追加ギャラリー画像 - 様々な乗馬シーン
   aboutGallery: [
-    // イベント参加時の画像 - イベントでの様子
-    getOptimizedImageUrl('https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'),
-    // ウエスタン乗馬・広大な風景 - 自然の中で乗馬する様子
-    getOptimizedImageUrl('https://images.pexels.com/photos/247477/pexels-photo-247477.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 馬と人・コミュニケーション - 馬と人が触れ合う様子
-    getOptimizedImageUrl('https://images.pexels.com/photos/1617366/pexels-photo-1617366.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 自然の中の乗馬 - 屋外で乗馬する様子
-    getOptimizedImageUrl('https://images.pexels.com/photos/1431042/pexels-photo-1431042.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // ラウンドペンでのトレーニング - 馬場でトレーニング・馬の練習
-    getOptimizedImageUrl('https://images.pexels.com/photos/3248621/pexels-photo-3248621.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 初心者向けレッスン - 初心者が乗馬を学ぶ様子・指導を受ける様子
-    getOptimizedImageUrl('https://images.pexels.com/photos/204611/pexels-photo-204611.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
-    // 馬の手入れ・ケア - 馬の手入れをする様子・馬との触れ合い
-    getOptimizedImageUrl('https://images.pexels.com/photos/1617366/pexels-photo-1617366.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop')  
+    getOptimizedImageUrl('https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=drive_link'), // イベント参加時の画像
+    '', // ウエスタン乗馬・広大な風景
+    '', // 馬と人・コミュニケーション
+    '', // 自然の中の乗馬
+    '', // ラウンドペンでのトレーニング
+    '', // 初心者向けレッスン
+    ''  // 馬の手入れ・ケア
   ],
 
   // プラン用の画像 - 各プランに適したシーン
   planImages: {
-    // 体験乗馬ショート: 馬に慣れる、触れてみたい初心者向け - 初心者が馬に触れる様子
-    trial: getOptimizedImageUrl('https://images.pexels.com/photos/204611/pexels-photo-204611.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'), 
-    // 体験乗馬ロング: 駈歩、馬の手入れ体験も可能 - 馬の手入れやコミュニケーション
-    horseCare: getOptimizedImageUrl('https://images.pexels.com/photos/1617366/pexels-photo-1617366.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop'), 
-    // レッスン回数券: 本格的に技術を習得 - 本格的なウエスタン乗馬・トレーニング
-    lesson: getOptimizedImageUrl('https://images.pexels.com/photos/247477/pexels-photo-247477.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop')  
+    trial: '', // 体験乗馬ショート
+    horseCare: '', // 体験乗馬ロング
+    lesson: ''  // レッスン回数券
   },
 
   // 地図エリアの代替画像 - 岐阜県の自然・高原風景
-  map: getOptimizedImageUrl('https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop')
+  map: ''
 };
 
 // 連絡先情報
