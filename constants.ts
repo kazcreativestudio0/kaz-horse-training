@@ -11,7 +11,7 @@ export const APP_NAME = "KAZU HORSE TRAINING";
  */
 const getOptimizedImageUrl = (url: string): string => {
   if (!url) return '';
-  
+
   // 余計な空白を削除
   let cleanUrl = url.trim();
 
@@ -31,54 +31,86 @@ const getOptimizedImageUrl = (url: string): string => {
 };
 
 // ==========================================
+// ★ローカル画像自動読み込み
+// ==========================================
+/**
+ * assets/local-images 配下に配置した画像ファイルをまとめて読み込み、
+ * ファイル名（拡張子を除いた部分）をキーにして参照できるようにします。
+ *
+ * 例) assets/local-images/hero.jpg → resolveImage('hero')
+ */
+const localImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/*.{png,jpg,jpeg,webp}',
+  { eager: true }
+);
+
+const LOCAL_IMAGE_MAP = Object.entries(localImageModules).reduce<Record<string, string>>(
+  (acc, [path, module]) => {
+    const fileName = path.split('/').pop() ?? '';
+    const key = fileName.replace(/\.(png|jpe?g|webp)$/i, '').toLowerCase();
+    acc[key] = module.default;
+    return acc;
+  },
+  {}
+);
+
+const getLocalImage = (key: string): string => {
+  if (!key) return '';
+  return LOCAL_IMAGE_MAP[key.toLowerCase()] ?? '';
+};
+
+const resolveImage = (key: string, fallbackUrl = ''): string => {
+  return getLocalImage(key) || getOptimizedImageUrl(fallbackUrl);
+};
+
+const resolveImageArray = (keys: string[], fallbackUrls: string[] = []): string[] => {
+  return keys.map((key, idx) => resolveImage(key, fallbackUrls[idx] ?? ''));
+};
+
+// ==========================================
 // ★写真・ロゴの設定エリア
 // ==========================================
-// ここにGoogle Driveの「リンクをコピー」で取得したURLをそのまま貼ってください。
-// 自動的に表示用リンクに変換されます。
+// 画像ファイルを assets/local-images に配置すると、自動的に同名キーで読み込まれます。
+// 例) hero.jpg → resolveImage('hero') としてヒーロー背景に使用。
+
+const HORSE_IMAGE_KEYS = ['horse-1', 'horse-2', 'horse-3', 'horse-4', 'horse-5', 'horse-6'];
+const ABOUT_GALLERY_KEYS = [
+  'about-gallery-1',
+  'about-gallery-2',
+  'about-gallery-3',
+  'about-gallery-4',
+  'about-gallery-5',
+  'about-gallery-6',
+  'about-gallery-7'
+];
 
 export const IMAGES = {
   // サイトのロゴ画像 (KAZロゴ)
-  // 手順: ドライブで右クリック→共有→「リンクを知っている全員」に変更→リンクをコピーしてここに貼る
-  logo: getOptimizedImageUrl('https://drive.google.com/file/d/1f2KgXRF3LYODrgd0Mz2vDDQpgLqHXu-M/view?usp=sharing'), 
+  logo: resolveImage('logo', 'https://drive.google.com/file/d/1f2KgXRF3LYODrgd0Mz2vDDQpgLqHXu-M/view?usp=sharing'),
 
-  // トップページの大きな背景画像 (横長推奨) - ウエスタン乗馬・自然の中で騎乗
-  // イベント参加時の画像を背景に使用
-  hero: getOptimizedImageUrl('https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'), 
+  // トップページの大きな背景画像 (横長推奨)
+  hero: resolveImage('hero', 'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'),
 
-  // 「About Us」セクションの画像 (縦長推奨) - 馬と人のコミュニケーション
-  // 馬と人が触れ合い、心を通わせている様子
-  about: '',
+  // 「About Us」セクションの画像 (縦長推奨)
+  about: resolveImage('about'),
 
-  // 馬の紹介画像 (正方形〜横長推奨) - 様々な馬の姿
-  horses: [
-    '', // 1頭目: ウエスタンホース（クォーターホース種など）
-    '', // 2頭目: 和種馬・ポニー（道産子・木曽馬・ポニー）
-    '', // 3頭目: 仔馬たち
-    '', // 4頭目: 追加ギャラリー用
-    '', // 5頭目: 追加ギャラリー用
-    ''  // 6頭目: 追加ギャラリー用
-  ],
+  // 馬の紹介 + 追加ギャラリー画像
+  horses: resolveImageArray(HORSE_IMAGE_KEYS),
 
-  // Aboutセクション用の追加ギャラリー画像 - 様々な乗馬シーン
-  aboutGallery: [
-    getOptimizedImageUrl('https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=drive_link'), // イベント参加時の画像
-    '', // ウエスタン乗馬・広大な風景
-    '', // 馬と人・コミュニケーション
-    '', // 自然の中の乗馬
-    '', // ラウンドペンでのトレーニング
-    '', // 初心者向けレッスン
-    ''  // 馬の手入れ・ケア
-  ],
+  // Aboutセクション用の追加ギャラリー画像
+  aboutGallery: resolveImageArray(ABOUT_GALLERY_KEYS, [
+    'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=drive_link'
+  ]),
 
   // プラン用の画像 - 各プランに適したシーン
   planImages: {
-    trial: '', // 体験乗馬ショート
-    horseCare: '', // 体験乗馬ロング
-    lesson: ''  // レッスン回数券
+    trial: resolveImage('plan-trial'),
+    horseCare: resolveImage('plan-horse-care'),
+    lesson: resolveImage('plan-lesson')
   },
 
-  // 地図エリアの代替画像 - 岐阜県の自然・高原風景
-  map: ''
+  // 地図エリアの代替画像
+  map: resolveImage('map')
 };
 
 // 連絡先情報
