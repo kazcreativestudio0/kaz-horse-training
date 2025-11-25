@@ -67,6 +67,8 @@ export const IMAGES = {
 
   // Aboutセクション用の追加ギャラリー画像 - 様々な乗馬シーン
   aboutGallery: [
+    // イベント参加時の画像 - イベントでの様子
+    getOptimizedImageUrl('https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'),
     // ウエスタン乗馬・広大な風景 - 自然の中で乗馬する様子
     getOptimizedImageUrl('https://images.pexels.com/photos/247477/pexels-photo-247477.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&fit=crop'), 
     // 馬と人・コミュニケーション - 馬と人が触れ合う様子
