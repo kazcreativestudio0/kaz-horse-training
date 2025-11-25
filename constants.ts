@@ -40,7 +40,7 @@ const getOptimizedImageUrl = (url: string): string => {
  * 例) assets/local-images/hero.jpg → resolveImage('hero')
  */
 const localImageModules = import.meta.glob<{ default: string }>(
-  './assets/local-images/*.{png,jpg,jpeg,webp}',
+  './assets/local-images/*.{png,jpg,jpeg,webp,svg}',
   { eager: true }
 );
 
