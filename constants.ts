@@ -31,28 +31,89 @@ const getOptimizedImageUrl = (url: string): string => {
 };
 
 // ==========================================
-// ★ローカル画像自動読み込み
+// ★ローカル画像自動読み込み（フォルダ別）
 // ==========================================
 /**
- * assets/local-images 配下に配置した画像ファイルをまとめて読み込み、
- * ファイル名（拡張子を除いた部分）をキーにして参照できるようにします。
- *
- * 例) assets/local-images/hero.jpg → resolveImage('hero')
+ * 各フォルダから画像を自動読み込みします。
+ * フォルダに画像を入れるだけで自動的に反映されます。
  */
-const localImageModules = import.meta.glob<{ default: string }>(
-  './assets/local-images/*.{png,jpg,jpeg,webp,svg}',
+
+// 各フォルダから静的に画像を読み込み（ビルド時に解析されるため、静的パスが必要）
+const heroImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/hero/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
   { eager: true }
-);
+) as Record<string, { default: string }>;
+
+const logoImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/logo/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
+  { eager: true }
+) as Record<string, { default: string }>;
+
+const aboutImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/about/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
+  { eager: true }
+) as Record<string, { default: string }>;
+
+const horsesImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/horses/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
+  { eager: true }
+) as Record<string, { default: string }>;
+
+const plansImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/plans/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
+  { eager: true }
+) as Record<string, { default: string }>;
+
+const mapsImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/maps/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
+  { eager: true }
+) as Record<string, { default: string }>;
+
+const galleryImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/gallery/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
+  { eager: true }
+) as Record<string, { default: string }>;
+
+// 各フォルダから最初の画像を取得する関数
+const getFirstImage = (modules: Record<string, { default: string }>): string => {
+  const images = Object.values(modules).map((m: { default: string }) => m.default).filter(Boolean);
+  return images.length > 0 ? images[0] : '';
+};
+
+// フォルダ内のすべての画像をファイル名順で取得する関数
+const getAllImages = (modules: Record<string, { default: string }>): string[] => {
+  return Object.entries(modules)
+    .map(([path, module]: [string, { default: string }]) => ({
+      path,
+      url: module.default,
+      fileName: path.split('/').pop() ?? ''
+    }))
+    .filter(item => item.url) // 空のURLを除外
+    .sort((a, b) => a.fileName.localeCompare(b.fileName, 'ja', { numeric: true }))
+    .map(item => item.url);
+};
+
+// 後方互換性のため、ルートフォルダからも読み込む（既存の画像がある場合に備えて）
+const localImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
+  { eager: true }
+) as Record<string, { default: string }>;
 
 const LOCAL_IMAGE_MAP = Object.entries(localImageModules).reduce<Record<string, string>>(
-  (acc, [path, module]) => {
+  (acc, [path, module]: [string, { default: string }]) => {
     const fileName = path.split('/').pop() ?? '';
-    const key = fileName.replace(/\.(png|jpe?g|webp)$/i, '').toLowerCase();
+    const key = fileName.replace(/\.(png|jpe?g|webp|svg|avif|JPG|PNG)$/i, '').toLowerCase();
     acc[key] = module.default;
     return acc;
   },
   {}
 );
+
+/**
+ * ギャラリーフォルダ内のすべての画像を自動読み込み
+ * assets/local-images/gallery/ フォルダ内の画像を自動的に取得して、ファイル名順にソート
+ */
+const GALLERY_IMAGES = getAllImages(galleryImageModules);
 
 const getLocalImage = (key: string): string => {
   if (!key) return '';
@@ -65,6 +126,35 @@ const resolveImage = (key: string, fallbackUrl = ''): string => {
 
 const resolveImageArray = (keys: string[], fallbackUrls: string[] = []): string[] => {
   return keys.map((key, idx) => resolveImage(key, fallbackUrls[idx] ?? ''));
+};
+
+// フォルダから直接読み込む関数（優先的に使用）
+const resolveImageFromFolder = (modules: Record<string, { default: string }>, fallbackKey: string = '', fallbackUrl: string = ''): string => {
+  const folderImage = getFirstImage(modules);
+  if (folderImage) return folderImage;
+  return resolveImage(fallbackKey, fallbackUrl);
+};
+
+// フォルダ内でファイル名に特定の文字列を含む画像を取得する関数
+const getImageByKeyword = (modules: Record<string, { default: string }>, keyword: string, fallbackKey: string = '', fallbackUrl: string = ''): string => {
+  // ファイル名にキーワードを含む画像を検索
+  const matched = Object.entries(modules).find(([path]) => {
+    const fileName = path.split('/').pop() ?? '';
+    return fileName.toLowerCase().includes(keyword.toLowerCase());
+  });
+  
+  if (matched) return matched[1].default;
+  
+  // 見つからない場合、最初の画像またはフォールバック
+  const folderImage = getFirstImage(modules);
+  if (folderImage) return folderImage;
+  return resolveImage(fallbackKey, fallbackUrl);
+};
+
+const resolveImageArrayFromFolder = (modules: Record<string, { default: string }>, fallbackKeys: string[] = [], fallbackUrls: string[] = []): string[] => {
+  const folderImages = getAllImages(modules);
+  if (folderImages.length > 0) return folderImages;
+  return resolveImageArray(fallbackKeys, fallbackUrls);
 };
 
 // ==========================================
@@ -86,31 +176,45 @@ const ABOUT_GALLERY_KEYS = [
 
 export const IMAGES = {
   // サイトのロゴ画像 (KAZロゴ)
-  logo: resolveImage('logo', 'https://drive.google.com/file/d/1f2KgXRF3LYODrgd0Mz2vDDQpgLqHXu-M/view?usp=sharing'),
+  // logo/ フォルダに入れた画像が自動的に使用されます
+  logo: resolveImageFromFolder(logoImageModules, 'logo', 'https://drive.google.com/file/d/1f2KgXRF3LYODrgd0Mz2vDDQpgLqHXu-M/view?usp=sharing'),
 
   // トップページの大きな背景画像 (横長推奨)
-  hero: resolveImage('hero', 'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'),
+  // hero/ フォルダに入れた画像が自動的に使用されます
+  hero: resolveImageFromFolder(heroImageModules, 'hero', 'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'),
 
   // 「About Us」セクションの画像 (縦長推奨)
-  about: resolveImage('about'),
+  // about/ フォルダに入れた画像が自動的に使用されます
+  about: resolveImageFromFolder(aboutImageModules, 'about'),
 
   // 馬の紹介 + 追加ギャラリー画像
-  horses: resolveImageArray(HORSE_IMAGE_KEYS),
+  // horses/ フォルダ内の画像が自動的に使用されます（ファイル名順）
+  horses: resolveImageArrayFromFolder(horsesImageModules, HORSE_IMAGE_KEYS),
 
   // Aboutセクション用の追加ギャラリー画像
-  aboutGallery: resolveImageArray(ABOUT_GALLERY_KEYS, [
-    'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=drive_link'
-  ]),
+  // gallery/ フォルダ内の画像を自動的に読み込み（フォルダに入れるだけで反映されます）
+  // フォールバック: 個別指定のキーまたはGoogle Driveリンク
+  aboutGallery: GALLERY_IMAGES.length > 0 
+    ? GALLERY_IMAGES 
+    : resolveImageArray(ABOUT_GALLERY_KEYS, [
+        'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=drive_link'
+      ]),
 
   // プラン用の画像 - 各プランに適したシーン
+  // plans/ フォルダ内の画像が自動的に使用されます
   planImages: {
-    trial: resolveImage('plan-trial'),
-    horseCare: resolveImage('plan-horse-care'),
-    lesson: resolveImage('plan-lesson')
+    // plans/ フォルダ内で trial を含むファイル名の画像
+    trial: getImageByKeyword(plansImageModules, 'trial', 'plan-trial'),
+    // plans/ フォルダ内で horse-care または horsecare を含むファイル名の画像
+    horseCare: getImageByKeyword(plansImageModules, 'horse-care', 'plan-horse-care') || 
+               getImageByKeyword(plansImageModules, 'horsecare', 'plan-horse-care'),
+    // plans/ フォルダ内で lesson を含むファイル名の画像
+    lesson: getImageByKeyword(plansImageModules, 'lesson', 'plan-lesson')
   },
 
   // 地図エリアの代替画像
-  map: resolveImage('map')
+  // maps/ フォルダに入れた画像が自動的に使用されます
+  map: resolveImageFromFolder(mapsImageModules, 'map')
 };
 
 // 連絡先情報
