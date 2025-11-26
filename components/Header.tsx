@@ -21,13 +21,13 @@ export const Header: React.FC = () => {
         isScrolled ? 'bg-primary shadow-lg py-2' : 'bg-transparent py-4'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo Area */}
         <a href="#" className="flex items-center gap-2 z-50 group">
-          <div className={`transition-all duration-300 flex items-center ${isScrolled ? 'h-10' : 'h-14 sm:h-16 md:h-20'}`}>
+          <div className={`transition-all duration-300 flex items-center ${isScrolled ? 'h-10' : 'h-16 md:h-20'}`}>
             {!imageError ? (
               <img 
-                src={IMAGES.logo} 
+                src={IMAGES.banner || IMAGES.logo} 
                 alt={APP_NAME} 
                 className="h-full w-auto object-contain drop-shadow-md"
                 onError={() => setImageError(true)}
@@ -35,8 +35,8 @@ export const Header: React.FC = () => {
             ) : (
               // Fallback text if image fails to load
               <div className="flex flex-col">
-                <span className="font-display font-bold text-white text-lg sm:text-xl md:text-2xl tracking-tighter leading-none">KAZU</span>
-                <span className="font-sans text-[9px] sm:text-[10px] md:text-xs text-white tracking-widest opacity-80 leading-none">HORSE TRAINING</span>
+                <span className="font-display font-bold text-white text-xl md:text-2xl tracking-tighter leading-none">KAZU</span>
+                <span className="font-sans text-[10px] md:text-xs text-white tracking-widest opacity-80 leading-none">HORSE TRAINING</span>
               </div>
             )}
           </div>

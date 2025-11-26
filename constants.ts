@@ -135,6 +135,36 @@ const resolveImageFromFolder = (modules: Record<string, { default: string }>, fa
   return resolveImage(fallbackKey, fallbackUrl);
 };
 
+// ロゴ画像を取得（バナー以外のロゴ画像を優先）
+const getLogoImage = (): string => {
+  // 「Untitled design 2」を含むファイル名を優先的に探す（バナー以外）
+  const logoImage = Object.entries(logoImageModules).find(([path]) => {
+    const fileName = path.split('/').pop() ?? '';
+    return (fileName.toLowerCase().includes('untitled') || fileName.toLowerCase().includes('design')) &&
+           !fileName.toLowerCase().includes('バナー') && !fileName.toLowerCase().includes('banner');
+  });
+  if (logoImage) return logoImage[1].default;
+  
+  // 見つからなければ最初の画像を使用（バナー以外）
+  const firstLogo = Object.entries(logoImageModules).find(([path]) => {
+    const fileName = path.split('/').pop() ?? '';
+    return !fileName.toLowerCase().includes('バナー') && !fileName.toLowerCase().includes('banner');
+  });
+  if (firstLogo) return firstLogo[1].default;
+  
+  return getOptimizedImageUrl('https://drive.google.com/file/d/1f2KgXRF3LYODrgd0Mz2vDDQpgLqHXu-M/view?usp=sharing');
+};
+
+// バナー画像を取得（Header用）
+const getBannerImage = (): string => {
+  const bannerImage = Object.entries(logoImageModules).find(([path]) => {
+    const fileName = path.split('/').pop() ?? '';
+    return fileName.toLowerCase().includes('バナー') || fileName.toLowerCase().includes('banner');
+  });
+  if (bannerImage) return bannerImage[1].default;
+  return getLogoImage(); // バナーが見つからない場合はロゴを使用
+};
+
 // フォルダ内でファイル名に特定の文字列を含む画像を取得する関数
 const getImageByKeyword = (modules: Record<string, { default: string }>, keyword: string, fallbackKey: string = '', fallbackUrl: string = ''): string => {
   // ファイル名にキーワードを含む画像を検索
@@ -175,9 +205,13 @@ const ABOUT_GALLERY_KEYS = [
 ];
 
 export const IMAGES = {
-  // サイトのロゴ画像 (KAZロゴ)
-  // logo/ フォルダに入れた画像が自動的に使用されます
-  logo: resolveImageFromFolder(logoImageModules, 'logo', 'https://drive.google.com/file/d/1f2KgXRF3LYODrgd0Mz2vDDQpgLqHXu-M/view?usp=sharing'),
+  // サイトのロゴ画像 (KAZロゴ) - Heroセクションで使用
+  // logo/ フォルダ内の「Untitled design 2」などを優先的に使用（バナー以外）
+  logo: getLogoImage(),
+  
+  // バナー画像 - Headerで使用（左上のロゴ）
+  // logo/ フォルダ内の「バナー」を含むファイル名の画像を使用
+  banner: getBannerImage(),
 
   // トップページの大きな背景画像 (横長推奨)
   // hero/ フォルダに入れた画像が自動的に使用されます
