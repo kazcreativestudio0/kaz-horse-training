@@ -4,24 +4,24 @@ import { IMAGES } from '../constants';
 
 export const About: React.FC = () => {
   return (
-    <section id={SectionId.ABOUT} className="py-20 md:py-32 bg-white relative overflow-hidden">
-      {/* Decorative background text */}
-      <div className="absolute top-20 left-0 text-[8rem] md:text-[10rem] font-display font-bold text-gray-50 leading-none select-none z-0 opacity-50">
+    <section id={SectionId.ABOUT} className="py-16 sm:py-20 md:py-32 bg-white relative overflow-hidden">
+      {/* Decorative background text - スマホでは非表示または小さく */}
+      <div className="absolute top-20 left-0 text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] font-display font-bold text-gray-50 leading-none select-none z-0 opacity-30 sm:opacity-50 hidden sm:block">
         WESTERN
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-16 md:mb-20">
-          <h4 className="text-secondary font-bold tracking-widest uppercase mb-3 text-xs md:text-sm">About Us</h4>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6 leading-tight">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+          <h4 className="text-secondary font-bold tracking-widest uppercase mb-3 text-xs sm:text-sm">About Us</h4>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-4 sm:mb-6 leading-tight px-2">
             Simple & Natural Style
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto"></div>
         </div>
 
         {/* Main Content */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 mb-20">
+        <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16 mb-12 sm:mb-16 md:mb-20">
           
           {/* Image Section */}
           <div className="w-full lg:w-1/2 relative">
@@ -49,21 +49,21 @@ export const About: React.FC = () => {
 
           {/* Text Content */}
           <div className="w-full lg:w-1/2">
-            <div className="space-y-6 text-gray-700 leading-relaxed text-base md:text-lg">
-              <p className="text-lg md:text-xl font-medium text-primary">
+            <div className="space-y-4 sm:space-y-6 text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
+              <p className="text-base sm:text-lg md:text-xl font-medium text-primary">
                 カズホーストレーニングは、岐阜県郡上市の標高1,000m、明野高原キャンプ場内にある乗馬クラブです。
               </p>
-              <p>
+              <p className="leading-relaxed">
                 元ブリティッシュインストラクターの経験を持つ代表が、現在は馬の心理を重視したウエスタン流のホースマンシップを指導しています。
               </p>
-              <p>
+              <p className="leading-relaxed">
                 私たちのスタイルはシンプルです。「馬に乗せてもらう」のではなく、あなたが主体となって馬とコミュニケーションを取る。
                 手綱を通じて伝わる馬の温もりと意思を感じながら、人馬一体となる喜びを提供します。
               </p>
             </div>
 
             {/* Feature Cards */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <div className="border-l-4 border-secondary pl-6 py-4 bg-gray-50 rounded-r-lg">
                 <h3 className="text-xl font-bold text-primary mb-2">Communication</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">馬と向き合い、心を通わせる<br/>マンツーマン指導</p>
@@ -78,9 +78,9 @@ export const About: React.FC = () => {
 
         {/* Gallery Section */}
         {IMAGES.aboutGallery && IMAGES.aboutGallery.length > 0 && (
-          <div className="mt-20">
-            <h3 className="text-2xl md:text-3xl font-display font-bold text-center text-primary mb-12">Gallery</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="mt-12 sm:mt-16 md:mt-20">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-center text-primary mb-8 sm:mb-12">Gallery</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
               {IMAGES.aboutGallery.map((img, idx) => (
                 <div key={idx} className="relative overflow-hidden group cursor-pointer aspect-square bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
                   {img ? (

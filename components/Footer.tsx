@@ -3,14 +3,14 @@ import { APP_NAME, IMAGES } from '../constants';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-primary text-gray-300 py-16 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          <div className="col-span-1 md:col-span-2">
-            <div className="w-48 mb-6">
+    <footer className="bg-primary text-gray-300 py-12 sm:py-16 border-t border-white/10">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2">
+            <div className="w-40 sm:w-48 mb-4 sm:mb-6">
                <img src={IMAGES.logo} alt={APP_NAME} className="w-full h-auto opacity-90" />
             </div>
-            <p className="max-w-xs text-sm leading-relaxed text-gray-400">
+            <p className="max-w-xs text-xs sm:text-sm leading-relaxed text-gray-400">
               〒501-5304<br/>
               岐阜県郡上市高鷲町鮎立5434<br/>
               (N.A.O.明野高原キャンプ場内)
@@ -18,8 +18,8 @@ export const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-widest border-b border-secondary/50 inline-block pb-1">Links</h4>
-            <ul className="space-y-3 text-sm">
+            <h4 className="text-white font-bold mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-widest border-b border-secondary/50 inline-block pb-1">Links</h4>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm">
               <li><a href="#" className="hover:text-white transition-colors hover:translate-x-1 inline-block">Home</a></li>
               <li><a href="#about" className="hover:text-white transition-colors hover:translate-x-1 inline-block">About</a></li>
               <li><a href="#plans" className="hover:text-white transition-colors hover:translate-x-1 inline-block">Plans</a></li>
