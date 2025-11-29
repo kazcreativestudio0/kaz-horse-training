@@ -1,4 +1,4 @@
-import { Plan, Horse, NavItem, SectionId } from './types';
+import { Plan, Horse, NavItem, SectionId, NewsItem } from './types';
 
 export const APP_NAME = "KAZU HORSE TRAINING";
 
@@ -261,12 +261,27 @@ export const CONTACT_INFO = {
 export const NAV_ITEMS: NavItem[] = [
   { label: 'ホーム', href: `#${SectionId.HOME}` },
   { label: 'ABOUT', href: `#${SectionId.ABOUT}` },
+  { label: 'NEWS', href: `#${SectionId.NEWS}` },
   { label: '料金プラン', href: `#${SectionId.PLANS}` },
   { label: '馬の紹介', href: `#${SectionId.HORSES}` },
   { label: 'アクセス', href: `#${SectionId.ACCESS}` },
 ];
 
 export const PLANS: Plan[] = [
+  {
+    id: 'lead-horse',
+    title: '引き馬',
+    price: '¥1,000',
+    features: [
+      'スタッフが馬を引いて馬場を1周',
+      '小さなお子様も安心',
+      '2歳から体験可能',
+      '親子乗りは +¥500',
+      '税込・保険料込'
+    ],
+    recommendedFor: '初めての方、小さなお子様、まずは馬に触れてみたい方',
+    imageUrl: IMAGES.planImages.trial
+  },
   {
     id: 'trial-short',
     title: '体験乗馬 (ショート)',
@@ -333,6 +348,44 @@ export const HORSES: Horse[] = [
     breed: '生産馬',
     description: '当クラブでは繁殖・育成も行っています。時期によっては、元気いっぱいに放牧場を駆け回る仔馬たちの姿を見ることができるかもしれません。',
     imageUrl: IMAGES.horses[2]
+  }
+];
+
+// 動画コンテンツ（YouTubeとInstagram）
+export const YOUTUBE_VIDEO = {
+  url: 'https://youtu.be/M9051ZXt4Lo?si=4TGtsC3ajV3nm3e1',
+  title: 'カズホーストレーニングの様子',
+  description: '実際の乗馬体験の様子や施設の雰囲気を動画でご紹介します。明野高原での乗馬体験の魅力をぜひご覧ください。'
+};
+
+export const INSTAGRAM_REEL = {
+  url: 'https://www.instagram.com/kaz.horsetraining/reel/DBqtFYXvcwx/?next=%2F',
+  title: 'Instagram Reelsで配信中',
+  description: 'Instagram Reelsで実際の乗馬体験の様子を配信しています。明野高原での乗馬体験の魅力をぜひご覧ください。'
+};
+
+// 本当のニュース記事（動画を含まない）
+export const NEWS: NewsItem[] = [
+  {
+    id: 'news-1',
+    date: '2025-11-30',
+    title: '料金プラン更新のお知らせ',
+    content: '体験乗馬の料金プランを見直しました。ショートコース（20分）¥4,700、ロングコース（40分）¥9,100となります。すべて税込・保険料込みの価格です。',
+    category: 'お知らせ'
+  },
+  {
+    id: 'news-2',
+    date: '2025-11-15',
+    title: '冬季営業のご案内',
+    content: '12月から3月までの冬季期間も営業しております。雪景色の中での乗馬体験も格別です。防寒対策をしっかりしてお越しください。',
+    category: 'お知らせ'
+  },
+  {
+    id: 'news-3',
+    date: '2025-11-01',
+    title: '引き馬体験が人気です',
+    content: '小さなお子様向けの引き馬体験が大変ご好評いただいております。2歳から体験可能で、スタッフが優しくサポートいたします。',
+    category: 'イベント'
   }
 ];
 

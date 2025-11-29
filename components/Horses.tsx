@@ -56,24 +56,25 @@ export const Horses: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.HORSES} className="py-24 bg-primary text-white">
-      <div className="container mx-auto px-4">
+    <section id={SectionId.HORSES} className="py-24 bg-primary text-white section-bg-anti relative">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 text-sm">Our Partners</h4>
-          <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">Meet The Horses</h2>
+          <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">馬たちとの出会い</h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
             カズホーストレーニングの主役たち。穏やかで人懐っこい彼らとの出会いが、あなたの心を癒します。
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {HORSES.map((horse) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-16">
+          {HORSES.map((horse, index) => (
             <div 
               key={horse.id} 
-              className="group cursor-pointer"
+              className="group cursor-pointer transform-3d"
+              style={{ animationDelay: `${index * 0.3}s` }}
               onClick={() => handleHorseClick(horse.id)}
             >
-              <div className="relative overflow-hidden mb-6 aspect-[4/3] bg-gray-800 rounded-lg">
+              <div className={`relative overflow-hidden mb-4 md:mb-6 aspect-[4/3] bg-gray-800 rounded-lg anti-gravity-card ${index % 2 === 0 ? 'floating' : 'floating-reverse'}`}>
                 {horse.imageUrl ? (
                   <img 
                     src={horse.imageUrl} 
@@ -98,12 +99,14 @@ export const Horses: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <div className="border-l-2 border-secondary pl-4 transition-all duration-300 group-hover:border-white">
-                <h3 className="text-2xl font-bold mb-1">{horse.name}</h3>
-                <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">{horse.breed}</p>
-                <p className="text-sm text-gray-300 leading-relaxed opacity-80 group-hover:opacity-100">
-                  {horse.description}
-                </p>
+              <div className="anti-gravity-card rounded-lg p-3 md:p-4 mt-2 md:mt-4 backdrop-blur-xl bg-white/15 border-white/20 transition-all duration-300 group-hover:bg-white/25">
+                <div className="border-l-2 border-secondary pl-2 md:pl-4 transition-all duration-300 group-hover:border-white">
+                  <h3 className="text-base md:text-2xl font-bold mb-1">{horse.name}</h3>
+                  <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 md:mb-3">{horse.breed}</p>
+                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed opacity-80 group-hover:opacity-100 line-clamp-3 md:line-clamp-none">
+                    {horse.description}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
@@ -112,7 +115,7 @@ export const Horses: React.FC = () => {
         {/* Additional Gallery */}
         {additionalHorseImages && additionalHorseImages.length > 0 && (
           <div className="mt-16">
-            <h3 className="text-2xl font-display font-bold text-center mb-8 text-secondary">Gallery</h3>
+            <h3 className="text-2xl font-display font-bold text-center mb-8 text-secondary">ギャラリー</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {additionalHorseImages.map((img, idx) => (
                 <div key={idx} className="relative overflow-hidden group cursor-pointer aspect-square bg-gray-800 rounded-lg">

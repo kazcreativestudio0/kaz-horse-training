@@ -2,6 +2,7 @@ import React from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
+import { News } from './components/News';
 import { Plans } from './components/Plans';
 import { Horses } from './components/Horses';
 import { Contact } from './components/Contact';
@@ -15,6 +16,7 @@ function App() {
       <main>
         <Hero />
         <About />
+        <News />
         <Plans />
         <Horses />
         <Contact />

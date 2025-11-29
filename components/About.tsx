@@ -53,9 +53,9 @@ export const About: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.ABOUT} className="py-20 md:py-32 bg-white relative overflow-hidden">
+    <section id={SectionId.ABOUT} className="py-20 md:py-32 bg-white relative overflow-hidden section-bg-anti">
       {/* Decorative background text */}
-      <div className="absolute top-20 left-0 text-[8rem] md:text-[10rem] font-display font-bold text-gray-50 leading-none select-none z-0 opacity-50">
+      <div className="absolute top-20 left-0 text-[8rem] md:text-[10rem] font-display font-bold text-gray-50 leading-none select-none z-0 opacity-50 floating-slow">
         WESTERN
       </div>
 
@@ -64,7 +64,7 @@ export const About: React.FC = () => {
         <div className="text-center mb-16 md:mb-20">
           <h4 className="text-secondary font-bold tracking-widest uppercase mb-3 text-xs md:text-sm">About Us</h4>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6 leading-tight">
-            Simple & Natural Style
+            カズホーストレーニングについて
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto"></div>
         </div>
@@ -74,7 +74,7 @@ export const About: React.FC = () => {
           
           {/* Image Section */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl">
+            <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl anti-gravity-card floating">
               {IMAGES.about ? (
                 <img 
                   src={IMAGES.about} 
@@ -113,11 +113,11 @@ export const About: React.FC = () => {
 
             {/* Feature Cards */}
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="border-l-4 border-secondary pl-6 py-4 bg-gray-50 rounded-r-lg">
+              <div className="border-l-4 border-secondary pl-6 py-4 anti-gravity-card rounded-r-lg floating-reverse">
                 <h3 className="text-xl font-bold text-primary mb-2">Communication</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">馬と向き合い、心を通わせる<br/>マンツーマン指導</p>
               </div>
-              <div className="border-l-4 border-primary pl-6 py-4 bg-gray-50 rounded-r-lg">
+              <div className="border-l-4 border-primary pl-6 py-4 anti-gravity-card rounded-r-lg floating">
                 <h3 className="text-xl font-bold text-primary mb-2">Location</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">四季を感じる明野高原の<br/>大自然と開放感</p>
               </div>
@@ -129,7 +129,7 @@ export const About: React.FC = () => {
         {IMAGES.aboutGallery && IMAGES.aboutGallery.length > 0 && (
           <div className="mt-20">
             <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-primary mb-3">Gallery</h3>
+              <h3 className="text-2xl md:text-3xl font-display font-bold text-primary mb-3">ギャラリー</h3>
               <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">
                 各写真をクリックすると、時代別の詳細な経歴をご覧いただけます
               </p>
@@ -140,7 +140,8 @@ export const About: React.FC = () => {
                 return (
                   <div 
                     key={idx} 
-                    className="relative overflow-hidden group cursor-pointer aspect-square bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+                    className={`relative overflow-hidden group cursor-pointer aspect-square bg-gray-100 rounded-lg anti-gravity-card transform-3d ${idx % 3 === 0 ? 'floating' : idx % 3 === 1 ? 'floating-reverse' : 'floating-slow'}`}
+                    style={{ animationDelay: `${idx * 0.1}s` }}
                     onClick={() => handleGalleryClick(idx)}
                   >
                     {img ? (

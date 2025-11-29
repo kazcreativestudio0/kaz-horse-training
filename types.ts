@@ -16,6 +16,16 @@ export interface Horse {
   imageUrl: string;
 }
 
+export interface NewsItem {
+  id: string;
+  date: string;
+  title: string;
+  content: string;
+  category?: string;
+  youtubeUrl?: string; // YouTube動画のURL（https://www.youtube.com/watch?v=... または https://youtu.be/... 形式）
+  instagramReelUrl?: string; // Instagram ReelsのURL（https://www.instagram.com/reel/... 形式）
+}
+
 export interface ChatMessage {
   role: 'user' | 'model';
   text: string;
@@ -30,6 +40,7 @@ export interface NavItem {
 export enum SectionId {
   HOME = 'home',
   ABOUT = 'about',
+  NEWS = 'news',
   PLANS = 'plans',
   HORSES = 'horses',
   ACCESS = 'access',

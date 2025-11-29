@@ -14,6 +14,27 @@ const PLAN_DETAILS: Record<string, {
   suitableFor: string;
   notes: string[];
 }> = {
+  'lead-horse': {
+    title: '引き馬',
+    price: '¥1,000（税込・保険料込）',
+    duration: '馬場を1周（約5分）',
+    description: 'スタッフが馬を引いてゆっくりと馬場内を一周するコースです。小さなお子様や全く初めての方に最適な体験です。2歳のお子様でも、やる気があれば体験可能です。馬の背に揺られながら、まずは乗馬の雰囲気を味わってみましょう。親子で一緒に乗ることもできます（追加料金あり）。',
+    features: [
+      'スタッフが馬を引いて馬場を1周',
+      '小さなお子様も安心',
+      '2歳から体験可能',
+      '親子乗りは +¥500',
+      '保険料込み'
+    ],
+    process: '受付 → ヘルメット着用 → 馬と対面（ごあいさつ） → 騎乗 → スタッフが馬を引いて馬場を1周（約5分） → 降馬 → 終了',
+    suitableFor: '初めての方、小さなお子様、まずは馬に触れてみたい方におすすめです。',
+    notes: [
+      '2歳から体験可能です（保護者同伴必須）',
+      '親子乗りは追加料金¥500で可能です',
+      '動きやすい服装でお越しください',
+      'ヘルメット等の安全具は当クラブで用意しております'
+    ]
+  },
   'trial-short': {
     title: '体験乗馬 (ショート)',
     price: '¥4,700 / 20分（税込・保険料込）',
@@ -91,12 +112,12 @@ export const Plans: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.PLANS} className="py-20 md:py-32 bg-gradient-to-b from-accent to-white">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id={SectionId.PLANS} className="py-20 md:py-32 bg-gradient-to-b from-accent to-white section-bg-anti">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-16 md:mb-20">
           <h4 className="text-secondary font-bold tracking-widest uppercase mb-3 text-xs md:text-sm">Plans & Pricing</h4>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6">Choose Your Ride</h2>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6">プラン・料金</h2>
           <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
           <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
             初めての方には「体験乗馬」、本格的に学びたい方には「レッスンコース」。<br />
@@ -105,12 +126,12 @@ export const Plans: React.FC = () => {
         </div>
 
         {/* Plans Grid */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-          {PLANS.map((plan) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto">
+          {PLANS.map((plan, index) => (
             <div
               key={plan.id}
-              className={`relative flex flex-col bg-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 overflow-hidden ${plan.isPopular ? 'border-2 border-secondary md:scale-105' : 'border-2 border-gray-200'
-                }`}
+              className={`relative flex flex-col anti-gravity-card rounded-lg overflow-hidden transform-3d ${plan.isPopular ? 'border-2 border-secondary md:scale-105' : ''}`}
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
               {plan.isPopular && (
                 <div className="absolute top-0 left-0 right-0 bg-secondary text-white text-xs font-bold px-4 py-2 text-center uppercase tracking-wider z-10">
@@ -120,7 +141,7 @@ export const Plans: React.FC = () => {
 
               {/* Plan Image */}
               {plan.imageUrl ? (
-                <div className={`relative h-48 overflow-hidden bg-gray-200 ${plan.isPopular ? 'mt-8' : ''}`}>
+                <div className={`relative h-32 md:h-48 overflow-hidden bg-gray-200 ${plan.isPopular ? 'mt-8' : ''}`}>
                   <img
                     src={plan.imageUrl}
                     alt={plan.title}
@@ -138,21 +159,21 @@ export const Plans: React.FC = () => {
                 </div>
               )}
 
-              <div className={`p-6 md:p-8 flex flex-col flex-1 ${plan.isPopular ? '' : ''}`}>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">{plan.title}</h3>
-                <p className="text-primary font-display font-bold text-3xl md:text-4xl mb-6">{plan.price}</p>
+              <div className={`p-4 md:p-8 flex flex-col flex-1 ${plan.isPopular ? '' : ''}`}>
+                <h3 className="text-base md:text-2xl font-bold text-gray-800 mb-2 md:mb-3">{plan.title}</h3>
+                <p className="text-primary font-display font-bold text-xl md:text-4xl mb-4 md:mb-6">{plan.price}</p>
 
-                <ul className="space-y-3 mb-8 flex-1">
+                <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8 flex-1">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-sm md:text-base text-gray-600">
+                    <li key={idx} className="flex items-start gap-2 md:gap-3 text-xs md:text-base text-gray-600">
                       <span className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0"></span>
                       <span className="leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="text-xs text-gray-500 mb-4 text-center">{plan.recommendedFor}</p>
+                <div className="pt-3 md:pt-4 border-t border-gray-200">
+                  <p className="text-[10px] md:text-xs text-gray-500 mb-3 md:mb-4 text-center leading-tight">{plan.recommendedFor}</p>
                   <Button
                     variant={plan.isPopular ? 'secondary' : 'outline'}
                     fullWidth

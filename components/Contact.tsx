@@ -9,7 +9,7 @@ export const Contact: React.FC = () => {
         {/* Header Section */}
         <div className="text-center mb-16 md:mb-20">
           <h4 className="text-secondary font-bold tracking-widest uppercase mb-3 text-xs md:text-sm">Contact & Access</h4>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6">Get In Touch</h2>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6">お問い合わせ・アクセス</h2>
           <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
           <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
             体験乗馬のご予約、レッスンのご相談など、お気軽にお問い合わせください。<br/>

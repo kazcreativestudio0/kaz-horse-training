@@ -37,6 +37,160 @@
       html {
         scroll-behavior: smooth;
       }
+
+      /* モバイルでのテキスト行数制限 */
+      @media (max-width: 767px) {
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+
+      /* アンチグラビティデザイン - 浮遊アニメーション */
+      @keyframes float {
+        0%, 100% { 
+          transform: translateY(0px) rotate(0deg); 
+        }
+        50% { 
+          transform: translateY(-20px) rotate(1deg); 
+        }
+      }
+
+      @keyframes floatReverse {
+        0%, 100% { 
+          transform: translateY(0px) rotate(0deg); 
+        }
+        50% { 
+          transform: translateY(20px) rotate(-1deg); 
+        }
+      }
+
+      @keyframes floatSlow {
+        0%, 100% { 
+          transform: translateY(0px); 
+        }
+        50% { 
+          transform: translateY(-15px); 
+        }
+      }
+
+      /* ガラスモーフィズムカード - 明るい印象 */
+      .anti-gravity-card {
+        backdrop-filter: blur(20px) saturate(180%);
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 
+          0 8px 32px 0 rgba(91, 155, 213, 0.25),
+          0 0 0 1px rgba(255, 255, 255, 0.3) inset,
+          0 0 60px rgba(255, 255, 255, 0.2);
+        transform-style: preserve-3d;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .anti-gravity-card:hover {
+        transform: translateY(-10px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+        box-shadow: 
+          0 20px 60px 0 rgba(91, 155, 213, 0.4),
+          0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+          0 0 100px rgba(199, 0, 57, 0.3);
+      }
+
+      /* 浮遊クラス */
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .floating-reverse {
+        animation: floatReverse 8s ease-in-out infinite;
+      }
+
+      .floating-slow {
+        animation: floatSlow 8s ease-in-out infinite;
+      }
+
+      /* グラデーション背景 - 明るい印象 */
+      .anti-gravity-bg {
+        background: linear-gradient(
+          135deg,
+          #5B9BD5 0%,
+          #87CEEB 25%,
+          #B0E0E6 50%,
+          #87CEEB 75%,
+          #5B9BD5 100%
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* パーティクル効果 - 明るく */
+      .particles::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: 
+          radial-gradient(circle at 20% 50%, rgba(199, 0, 57, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.25) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(135, 206, 235, 0.2) 0%, transparent 50%);
+        animation: particleMove 20s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes particleMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-50%, -50%); }
+      }
+
+      /* ガラスロゴ */
+      .glass-logo {
+        backdrop-filter: blur(20px) saturate(180%);
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 
+          0 8px 32px 0 rgba(0, 0, 0, 0.3),
+          0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+          0 0 80px rgba(255, 255, 255, 0.2);
+      }
+
+      /* セクション背景 */
+      .section-bg-anti {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-bg-anti::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at top, rgba(135, 206, 235, 0.15) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      /* 3D効果 */
+      .transform-3d {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+
+      .card-3d {
+        transform-style: preserve-3d;
+        transition: transform 0.3s ease;
+      }
+
+      .card-3d:hover {
+        transform: translateZ(20px) rotateY(5deg);
+      }
+
     </style>
   <script type="importmap">
 {
@@ -48,6 +202,8 @@
   }
 }
 </script>
+<!-- Instagram Embed Script -->
+<script async src="https://www.instagram.com/embed.js"></script>
 <link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-white text-dark font-sans antialiased selection:bg-secondary selection:text-white">
