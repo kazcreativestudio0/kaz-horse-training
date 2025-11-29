@@ -141,17 +141,17 @@ const getLogoImage = (): string => {
   const logoImage = Object.entries(logoImageModules).find(([path]) => {
     const fileName = path.split('/').pop() ?? '';
     return (fileName.toLowerCase().includes('untitled') || fileName.toLowerCase().includes('design')) &&
-           !fileName.toLowerCase().includes('バナー') && !fileName.toLowerCase().includes('banner');
+      !fileName.toLowerCase().includes('バナー') && !fileName.toLowerCase().includes('banner');
   });
   if (logoImage) return logoImage[1].default;
-  
+
   // 見つからなければ最初の画像を使用（バナー以外）
   const firstLogo = Object.entries(logoImageModules).find(([path]) => {
     const fileName = path.split('/').pop() ?? '';
     return !fileName.toLowerCase().includes('バナー') && !fileName.toLowerCase().includes('banner');
   });
   if (firstLogo) return firstLogo[1].default;
-  
+
   return getOptimizedImageUrl('https://drive.google.com/file/d/1f2KgXRF3LYODrgd0Mz2vDDQpgLqHXu-M/view?usp=sharing');
 };
 
@@ -172,9 +172,9 @@ const getImageByKeyword = (modules: Record<string, { default: string }>, keyword
     const fileName = path.split('/').pop() ?? '';
     return fileName.toLowerCase().includes(keyword.toLowerCase());
   });
-  
+
   if (matched) return matched[1].default;
-  
+
   // 見つからない場合、最初の画像またはフォールバック
   const folderImage = getFirstImage(modules);
   if (folderImage) return folderImage;
@@ -208,7 +208,7 @@ export const IMAGES = {
   // サイトのロゴ画像 (KAZロゴ) - Heroセクションで使用
   // logo/ フォルダ内の「Untitled design 2」などを優先的に使用（バナー以外）
   logo: getLogoImage(),
-  
+
   // バナー画像 - Headerで使用（左上のロゴ）
   // logo/ フォルダ内の「バナー」を含むファイル名の画像を使用
   banner: getBannerImage(),
@@ -228,11 +228,11 @@ export const IMAGES = {
   // Aboutセクション用の追加ギャラリー画像
   // gallery/ フォルダ内の画像を自動的に読み込み（フォルダに入れるだけで反映されます）
   // フォールバック: 個別指定のキーまたはGoogle Driveリンク
-  aboutGallery: GALLERY_IMAGES.length > 0 
-    ? GALLERY_IMAGES 
+  aboutGallery: GALLERY_IMAGES.length > 0
+    ? GALLERY_IMAGES
     : resolveImageArray(ABOUT_GALLERY_KEYS, [
-        'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=drive_link'
-      ]),
+      'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=drive_link'
+    ]),
 
   // プラン用の画像 - 各プランに適したシーン
   // plans/ フォルダ内の画像が自動的に使用されます
@@ -240,8 +240,8 @@ export const IMAGES = {
     // plans/ フォルダ内で trial を含むファイル名の画像
     trial: getImageByKeyword(plansImageModules, 'trial', 'plan-trial'),
     // plans/ フォルダ内で horse-care または horsecare を含むファイル名の画像
-    horseCare: getImageByKeyword(plansImageModules, 'horse-care', 'plan-horse-care') || 
-               getImageByKeyword(plansImageModules, 'horsecare', 'plan-horse-care'),
+    horseCare: getImageByKeyword(plansImageModules, 'horse-care', 'plan-horse-care') ||
+      getImageByKeyword(plansImageModules, 'horsecare', 'plan-horse-care'),
     // plans/ フォルダ内で lesson を含むファイル名の画像
     lesson: getImageByKeyword(plansImageModules, 'lesson', 'plan-lesson')
   },
@@ -270,13 +270,13 @@ export const PLANS: Plan[] = [
   {
     id: 'trial-short',
     title: '体験乗馬 (ショート)',
-    price: '¥3,000 / 15分',
+    price: '¥4,700 / 20分',
     features: [
       '馬に慣れるためのコース',
       'スタッフの指導付きで自分で操作',
       '引き馬ではありません',
-      'ハイシーズンは+¥1,000',
-      '別途保険料 ¥300'
+      '税込・保険料込',
+      'ブラッシング体験付き'
     ],
     recommendedFor: 'まずは馬に触れてみたい方、少しだけ乗ってみたい方',
     imageUrl: IMAGES.planImages.trial
@@ -284,13 +284,13 @@ export const PLANS: Plan[] = [
   {
     id: 'trial-long',
     title: '体験乗馬 (ロング)',
-    price: '¥7,000 / 45分',
+    price: '¥9,100 / 40分',
     features: [
       '軽い駈歩（かけあし）まで挑戦',
       '馬の手入れ体験も可能',
       'マンツーマン指導',
-      'ハイシーズンは+¥1,000',
-      '別途保険料 ¥300'
+      '税込・保険料込',
+      'ブラッシング体験付き'
     ],
     recommendedFor: 'しっかり乗ってみたい方、走ってみたい方',
     isPopular: true,

@@ -16,42 +16,40 @@ const PLAN_DETAILS: Record<string, {
 }> = {
   'trial-short': {
     title: '体験乗馬 (ショート)',
-    price: '¥3,000 / 15分（ハイシーズン +¥1,000）',
-    duration: '約15分の騎乗 + 準備時間含めて約30分',
-    description: 'インストラクターの指導のもと、自分で手綱を持って馬を操作するショートコースです。馬にまたがる前に簡単なブラッシング（馬のお手入れ）も体験します。一人で馬を動かす感覚は感動的で、馬とのコミュニケーションの第一歩を踏み出せます。約15分と短時間なので、初めてでも安心してチャレンジできます。',
+    price: '¥4,700 / 20分（税込・保険料込）',
+    duration: '約20分の騎乗 + 準備時間含めて約35分',
+    description: 'インストラクターの指導のもと、自分で手綱を持って馬を操作するショートコースです。馬にまたがる前に簡単なブラッシング（馬のお手入れ）も体験します。一人で馬を動かす感覚は感動的で、馬とのコミュニケーションの第一歩を踏み出せます。約20分と短時間なので、初めてでも安心してチャレンジできます。',
     features: [
       '自分で手綱を持って馬を操作',
       '引き馬ではありません',
       'ブラッシング（馬のお手入れ）体験付き',
       'スタッフの丁寧な指導',
-      '別途保険料 ¥300'
+      '保険料込み'
     ],
-    process: '受付 → ヘルメット着用 → 馬と対面（ごあいさつ） → ブラッシング体験 → 騎乗レッスン開始（約15分） → 降馬 → 終了',
+    process: '受付 → ヘルメット着用 → 馬と対面（ごあいさつ） → ブラッシング体験 → 騎乗レッスン開始（約20分） → 降馬 → 終了',
     suitableFor: 'まずは馬に触れてみたい方、少しだけ乗ってみたい方、初めての方でも安心してチャレンジできます。',
     notes: [
-      'ハイシーズン（GW・夏休み等）は+¥1,000',
-      '別途保険料 ¥300が必要です',
+      'ハイシーズン（GW・夏休み等）は料金が異なる場合があります',
       '動きやすい長ズボンとスニーカーでお越しください',
       'ヘルメット等の安全具は当クラブで用意しております'
     ]
   },
   'trial-long': {
     title: '体験乗馬 (ロング)',
-    price: '¥7,000 / 45分（ハイシーズン +¥1,000）',
-    duration: '約45分の騎乗 + 準備時間含めて約60分',
-    description: '15分コースに慣れたら、より本格的な45分コースに挑戦できます。馬を自分で操作しながら、少し走る（速歩や軽い駈歩）ところまで挑戦します。広々とした高原で風を感じながら馬上散歩を楽しめる、爽快感抜群のコースです。こちらもブラッシング体験付きで、馬とのふれあいをじっくり楽しめます。「もっと乗ってみたい！」という方におすすめです。',
+    price: '¥9,100 / 40分（税込・保険料込）',
+    duration: '約40分の騎乗 + 準備時間含めて約50分',
+    description: '15分コースに慣れたら、より本格的な40分コースに挑戦できます。馬を自分で操作しながら、少し走る（速歩や軽い駈歩）ところまで挑戦します。広々とした高原で風を感じながら馬上散歩を楽しめる、爽快感抜群のコースです。こちらもブラッシング体験付きで、馬とのふれあいをじっくり楽しめます。「もっと乗ってみたい！」という方におすすめです。',
     features: [
       '軽い駈歩（かけあし）まで挑戦',
       '馬の手入れ体験も可能',
       'マンツーマン指導',
       'ブラッシング体験付き',
-      '別途保険料 ¥300'
+      '保険料込み'
     ],
-    process: '受付 → ヘルメット着用 → 馬と対面（ごあいさつ） → ブラッシング体験 → 騎乗レッスン開始（速歩・軽い駈歩まで体験、約45分） → 降馬 → 終了',
+    process: '受付 → ヘルメット着用 → 馬と対面（ごあいさつ） → ブラッシング体験 → 騎乗レッスン開始（速歩・軽い駈歩まで体験、約40分） → 降馬 → 終了',
     suitableFor: 'しっかり乗ってみたい方、走ってみたい方、もっと乗馬を楽しみたい方に最適です。',
     notes: [
-      'ハイシーズン（GW・夏休み等）は+¥1,000',
-      '別途保険料 ¥300が必要です',
+      'ハイシーズン（GW・夏休み等）は料金が異なる場合があります',
       '動きやすい長ズボンとスニーカーでお越しください',
       'ヘルメット等の安全具は当クラブで用意しております',
       '広々とした高原で爽快感抜群の体験ができます'
@@ -101,7 +99,7 @@ export const Plans: React.FC = () => {
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6">Choose Your Ride</h2>
           <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
           <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
-            初めての方には「体験乗馬」、本格的に学びたい方には「レッスンコース」。<br/>
+            初めての方には「体験乗馬」、本格的に学びたい方には「レッスンコース」。<br />
             目的に合わせて最適なプランをお選びください。
           </p>
         </div>
@@ -109,24 +107,23 @@ export const Plans: React.FC = () => {
         {/* Plans Grid */}
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {PLANS.map((plan) => (
-            <div 
-              key={plan.id} 
-              className={`relative flex flex-col bg-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 overflow-hidden ${
-                plan.isPopular ? 'border-2 border-secondary md:scale-105' : 'border-2 border-gray-200'
-              }`}
+            <div
+              key={plan.id}
+              className={`relative flex flex-col bg-white rounded-lg shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 overflow-hidden ${plan.isPopular ? 'border-2 border-secondary md:scale-105' : 'border-2 border-gray-200'
+                }`}
             >
               {plan.isPopular && (
                 <div className="absolute top-0 left-0 right-0 bg-secondary text-white text-xs font-bold px-4 py-2 text-center uppercase tracking-wider z-10">
                   ⭐ Popular
                 </div>
               )}
-              
+
               {/* Plan Image */}
               {plan.imageUrl ? (
                 <div className={`relative h-48 overflow-hidden bg-gray-200 ${plan.isPopular ? 'mt-8' : ''}`}>
-                  <img 
-                    src={plan.imageUrl} 
-                    alt={plan.title} 
+                  <img
+                    src={plan.imageUrl}
+                    alt={plan.title}
                     className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     onError={(e) => {
                       console.error(`Plan image for ${plan.title} failed to load:`, plan.imageUrl);
@@ -140,11 +137,11 @@ export const Plans: React.FC = () => {
                   <span className="text-gray-400 text-sm">画像準備中</span>
                 </div>
               )}
-              
+
               <div className={`p-6 md:p-8 flex flex-col flex-1 ${plan.isPopular ? '' : ''}`}>
                 <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">{plan.title}</h3>
                 <p className="text-primary font-display font-bold text-3xl md:text-4xl mb-6">{plan.price}</p>
-              
+
                 <ul className="space-y-3 mb-8 flex-1">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm md:text-base text-gray-600">
@@ -156,8 +153,8 @@ export const Plans: React.FC = () => {
 
                 <div className="pt-4 border-t border-gray-200">
                   <p className="text-xs text-gray-500 mb-4 text-center">{plan.recommendedFor}</p>
-                  <Button 
-                    variant={plan.isPopular ? 'secondary' : 'outline'} 
+                  <Button
+                    variant={plan.isPopular ? 'secondary' : 'outline'}
                     fullWidth
                     size="sm"
                     className="font-bold"
@@ -170,7 +167,7 @@ export const Plans: React.FC = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Footer Note */}
         <div className="mt-12 text-center">
           <p className="text-xs md:text-sm text-gray-500 bg-white/50 px-4 py-2 rounded-lg inline-block">
@@ -181,11 +178,11 @@ export const Plans: React.FC = () => {
 
       {/* Plan Detail Modal */}
       {selectedPlan && PLAN_DETAILS[selectedPlan] && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
           onClick={closeModal}
         >
-          <div 
+          <div
             className="relative bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
@@ -196,15 +193,15 @@ export const Plans: React.FC = () => {
               aria-label="閉じる"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 6 6 18M6 6l12 12"/>
+                <path d="M18 6 6 18M6 6l12 12" />
               </svg>
             </button>
 
             {/* Image */}
             {PLANS.find(p => p.id === selectedPlan)?.imageUrl && (
               <div className="relative w-full h-64 md:h-96 bg-gray-100">
-                <img 
-                  src={PLANS.find(p => p.id === selectedPlan)!.imageUrl!} 
+                <img
+                  src={PLANS.find(p => p.id === selectedPlan)!.imageUrl!}
                   alt={PLAN_DETAILS[selectedPlan].title}
                   className="w-full h-full object-cover"
                 />
@@ -284,10 +281,10 @@ export const Plans: React.FC = () => {
                     電話で予約する
                   </Button>
                 </a>
-                <Button 
-                  variant="outline" 
-                  fullWidth 
-                  size="lg" 
+                <Button
+                  variant="outline"
+                  fullWidth
+                  size="lg"
                   className="font-bold"
                   onClick={closeModal}
                 >
