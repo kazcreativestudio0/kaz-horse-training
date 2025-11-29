@@ -30,7 +30,7 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto flex flex-col items-center">
+      <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto flex flex-col items-center mt-16 md:mt-24">
         
         {/* Main Logo Brand Mark - アンチグラビティ浮遊効果 */}
         <div className="w-64 md:w-96 mb-8 animate-fade-in-up flex justify-center floating">
@@ -55,31 +55,27 @@ export const Hero: React.FC = () => {
            )}
         </div>
         
-        <div className="anti-gravity-card rounded-2xl p-6 md:p-10 max-w-3xl mx-auto backdrop-blur-xl bg-white/25 border-white/40 animate-fade-in-up delay-100 floating-slow">
-          <p className="text-base md:text-xl mb-6 text-white font-medium leading-relaxed tracking-wide">
-            <span className="block mb-3 font-display text-secondary font-bold tracking-widest text-sm md:text-base drop-shadow-lg">EST. GUJO, GIFU</span>
-            馬と心が通じ合う、真のホースマンシップ。<br/>
-            明野高原の大自然の中で、新しい感動を。
-          </p>
+        <div className="w-full max-w-5xl mx-auto animate-fade-in-up delay-100 px-4">
+          <p className="block mb-4 md:mb-6 font-display text-secondary font-bold tracking-widest text-xs md:text-sm drop-shadow-lg">EST. GUJO, GIFU</p>
+          <h2 className="hero-text text-2xl md:text-4xl lg:text-5xl font-emotional font-semibold text-white mb-10 md:mb-12 leading-tight md:leading-relaxed tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+            <div className="block whitespace-nowrap">
+              馬と心が通じ合う、真のホースマンシップ。
+            </div>
+            <div className="block mt-2 md:mt-3 text-xl md:text-3xl lg:text-4xl font-light whitespace-nowrap">
+              明野高原の大自然の中で、新しい感動を。
+            </div>
+          </h2>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-up delay-200">
+          <div className="flex justify-center items-center animate-fade-in-up delay-200 mt-8">
             <a href={CONTACT_INFO.phoneLink}>
-              <Button variant="secondary" size="lg" className="min-w-[200px] shadow-[0_0_30px_rgba(199,0,57,0.6)] hover:shadow-[0_0_40px_rgba(199,0,57,0.8)] transition-all">
+              <Button variant="secondary" size="lg" className="shadow-[0_0_30px_rgba(199,0,57,0.6)] hover:shadow-[0_0_40px_rgba(199,0,57,0.8)] transition-all">
                 体験予約
               </Button>
-            </a>
-            <a href={`#${SectionId.ABOUT}`} className="text-white hover:text-secondary transition-colors text-sm font-bold tracking-widest uppercase border-b-2 border-white/40 hover:border-secondary pb-1">
-              Discover More
             </a>
           </div>
         </div>
       </div>
       
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60 animate-bounce">
-        <span className="text-[10px] tracking-widest uppercase">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
-      </div>
     </section>
   );
 };

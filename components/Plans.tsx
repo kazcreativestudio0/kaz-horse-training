@@ -126,22 +126,16 @@ export const Plans: React.FC = () => {
         </div>
 
         {/* Plans Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 lg:gap-6 max-w-7xl mx-auto">
           {PLANS.map((plan, index) => (
             <div
               key={plan.id}
-              className={`relative flex flex-col anti-gravity-card rounded-lg overflow-hidden transform-3d ${plan.isPopular ? 'border-2 border-secondary md:scale-105' : ''}`}
+              className="relative flex flex-col anti-gravity-card rounded-lg overflow-hidden transform-3d"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              {plan.isPopular && (
-                <div className="absolute top-0 left-0 right-0 bg-secondary text-white text-xs font-bold px-4 py-2 text-center uppercase tracking-wider z-10">
-                  ⭐ Popular
-                </div>
-              )}
-
               {/* Plan Image */}
               {plan.imageUrl ? (
-                <div className={`relative h-32 md:h-48 overflow-hidden bg-gray-200 ${plan.isPopular ? 'mt-8' : ''}`}>
+                <div className="relative h-32 md:h-48 overflow-hidden bg-gray-200">
                   <img
                     src={plan.imageUrl}
                     alt={plan.title}
@@ -154,12 +148,12 @@ export const Plans: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 </div>
               ) : (
-                <div className={`relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center ${plan.isPopular ? 'mt-8' : ''}`}>
+                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
                   <span className="text-gray-400 text-sm">画像準備中</span>
                 </div>
               )}
 
-              <div className={`p-4 md:p-8 flex flex-col flex-1 ${plan.isPopular ? '' : ''}`}>
+              <div className="p-4 md:p-8 flex flex-col flex-1">
                 <h3 className="text-base md:text-2xl font-bold text-gray-800 mb-2 md:mb-3">{plan.title}</h3>
                 <p className="text-primary font-display font-bold text-xl md:text-4xl mb-4 md:mb-6">{plan.price}</p>
 
@@ -175,7 +169,7 @@ export const Plans: React.FC = () => {
                 <div className="pt-3 md:pt-4 border-t border-gray-200">
                   <p className="text-[10px] md:text-xs text-gray-500 mb-3 md:mb-4 text-center leading-tight">{plan.recommendedFor}</p>
                   <Button
-                    variant={plan.isPopular ? 'secondary' : 'outline'}
+                    variant="outline"
                     fullWidth
                     size="sm"
                     className="font-bold"

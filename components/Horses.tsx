@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SectionId } from '../types';
 import { HORSES, IMAGES, CONTACT_INFO } from '../constants';
 import { Button } from './Button';
@@ -44,6 +44,7 @@ const HORSE_DETAILS: Record<string, {
 
 export const Horses: React.FC = () => {
   const [selectedHorse, setSelectedHorse] = useState<string | null>(null);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   // 追加のギャラリー画像（メイン3頭以外）
   const additionalHorseImages = IMAGES.horses.slice(3);
 
@@ -53,6 +54,19 @@ export const Horses: React.FC = () => {
 
   const closeModal = () => {
     setSelectedHorse(null);
+  };
+
+  // スライダー制御
+  const goToNextSlide = () => {
+    setCurrentSlideIndex((prev) => (prev + 1) % additionalHorseImages.length);
+  };
+
+  const goToPrevSlide = () => {
+    setCurrentSlideIndex((prev) => (prev - 1 + additionalHorseImages.length) % additionalHorseImages.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlideIndex(index);
   };
 
   return (
@@ -112,31 +126,107 @@ export const Horses: React.FC = () => {
           ))}
         </div>
 
-        {/* Additional Gallery */}
+        {/* Additional Gallery - Slider */}
         {additionalHorseImages && additionalHorseImages.length > 0 && (
           <div className="mt-16">
             <h3 className="text-2xl font-display font-bold text-center mb-8 text-secondary">ギャラリー</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {additionalHorseImages.map((img, idx) => (
-                <div key={idx} className="relative overflow-hidden group cursor-pointer aspect-square bg-gray-800 rounded-lg">
-                  {img ? (
-                    <img 
-                      src={img} 
-                      alt={`Horse gallery ${idx + 1}`} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
-                      onError={(e) => {
-                        console.error(`Horse gallery image ${idx + 1} failed to load:`, img);
-                        e.currentTarget.src = 'https://via.placeholder.com/800x800?text=Image+Loading';
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-800">
-                      <span className="text-gray-500 text-sm">画像準備中</span>
+            
+            {/* Slider Container */}
+            <div className="relative max-w-4xl mx-auto">
+              {/* Main Image Display */}
+              <div className="relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-800">
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ transform: `translateX(-${currentSlideIndex * 100}%)` }}
+                >
+                  {additionalHorseImages.map((img, idx) => (
+                    <div 
+                      key={idx} 
+                      className="min-w-full h-full relative"
+                    >
+                      {img ? (
+                        <img 
+                          src={img} 
+                          alt={`Horse gallery ${idx + 1}`} 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            console.error(`Horse gallery image ${idx + 1} failed to load:`, img);
+                            e.currentTarget.src = 'https://via.placeholder.com/800x800?text=Image+Loading';
+                          }}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center bg-gray-800">
+                          <span className="text-gray-500 text-sm">画像準備中</span>
+                        </div>
+                      )}
                     </div>
-                  )}
-                  <div className="absolute inset-0 bg-secondary/0 group-hover:bg-secondary/20 transition-colors duration-300"></div>
+                  ))}
                 </div>
-              ))}
+
+                {/* Navigation Buttons */}
+                {additionalHorseImages.length > 1 && (
+                  <>
+                    {/* Previous Button */}
+                    <button
+                      onClick={goToPrevSlide}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                      aria-label="前の画像"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M15 18l-6-6 6-6"/>
+                      </svg>
+                    </button>
+
+                    {/* Next Button */}
+                    <button
+                      onClick={goToNextSlide}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                      aria-label="次の画像"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9 18l6-6-6-6"/>
+                      </svg>
+                    </button>
+                  </>
+                )}
+
+                {/* Image Counter */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white px-4 py-2 rounded-full text-sm font-bold">
+                  {currentSlideIndex + 1} / {additionalHorseImages.length}
+                </div>
+              </div>
+
+              {/* Thumbnail Navigation */}
+              {additionalHorseImages.length > 1 && (
+                <div className="mt-6 flex gap-3 overflow-x-auto pb-2 justify-center hide-scrollbar">
+                  {additionalHorseImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => goToSlide(idx)}
+                      className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                        currentSlideIndex === idx 
+                          ? 'border-secondary scale-110' 
+                          : 'border-transparent opacity-60 hover:opacity-100 hover:scale-105'
+                      }`}
+                      aria-label={`画像 ${idx + 1} を表示`}
+                    >
+                      {img ? (
+                        <img 
+                          src={img} 
+                          alt={`Thumbnail ${idx + 1}`} 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            console.error(`Thumbnail ${idx + 1} failed to load:`, img);
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-700"></div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}

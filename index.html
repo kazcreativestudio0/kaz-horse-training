@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kazu Horse Training | カズホーストレーニング</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
@@ -13,6 +13,8 @@
             fontFamily: {
               sans: ['"Zen Kaku Gothic New"', 'sans-serif'],
               display: ['"Montserrat"', 'sans-serif'],
+              serif: ['"Noto Serif JP"', '"Playfair Display"', 'serif'],
+              emotional: ['"Playfair Display"', '"Noto Serif JP"', 'serif'],
             },
             colors: {
               primary: '#0F2C59', // Navy Blue - 知的で落ち着いた青
@@ -26,16 +28,34 @@
     </script>
     <style>
       /* Hide scrollbar for Chrome, Safari and Opera */
-      .no-scrollbar::-webkit-scrollbar {
+      .no-scrollbar::-webkit-scrollbar,
+      .hide-scrollbar::-webkit-scrollbar {
           display: none;
       }
       /* Hide scrollbar for IE, Edge and Firefox */
-      .no-scrollbar {
+      .no-scrollbar,
+      .hide-scrollbar {
           -ms-overflow-style: none;  /* IE and Edge */
           scrollbar-width: none;  /* Firefox */
       }
       html {
         scroll-behavior: smooth;
+      }
+
+      /* 日本語テキストの改行制御 */
+      .hero-text {
+        word-break: keep-all;
+        overflow-wrap: normal;
+      }
+
+      .hero-text div {
+        line-height: 1.6;
+      }
+
+      @media (min-width: 768px) {
+        .hero-text div {
+          line-height: 1.8;
+        }
       }
 
       /* モバイルでのテキスト行数制限 */
