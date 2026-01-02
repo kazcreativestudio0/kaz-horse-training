@@ -347,7 +347,7 @@ export const PLANS: Plan[] = [
       'スタッフの指導付きで自分で操作',
       '引き馬ではありません',
       '税込・保険料込',
-      'ブラッシング体験付き'
+      'ブラッシング体験も出来ます'
     ],
     recommendedFor: 'まずは馬に触れてみたい方、少しだけ乗ってみたい方',
     imageUrl: IMAGES.planImages.trial
@@ -361,7 +361,7 @@ export const PLANS: Plan[] = [
       '馬の手入れ体験も可能',
       'マンツーマン指導',
       '税込・保険料込',
-      'ブラッシング体験付き'
+      'ブラッシング体験も出来ます'
     ],
     recommendedFor: 'しっかり乗ってみたい方、走ってみたい方',
     imageUrl: IMAGES.planImages.trialLong
