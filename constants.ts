@@ -166,7 +166,7 @@ const getBannerImage = (): string => {
 };
 
 // フォルダ内でファイル名に特定の文字列を含む画像を取得する関数
-const getImageByKeyword = (modules: Record<string, { default: string }>, keyword: string, fallbackKey: string = '', fallbackUrl: string = ''): string => {
+const getImageByKeyword = (modules: Record<string, { default: string }>, keyword: string, fallbackKey: string = '', fallbackUrl: string = '', strict: boolean = false): string => {
   // ファイル名にキーワードを含む画像を検索
   const matched = Object.entries(modules).find(([path]) => {
     const fileName = path.split('/').pop() ?? '';
@@ -175,9 +175,21 @@ const getImageByKeyword = (modules: Record<string, { default: string }>, keyword
 
   if (matched) return matched[1].default;
 
+  // strictモードの場合はフォールバックなし
+  if (strict) return '';
+
   // 見つからない場合、最初の画像またはフォールバック
   const folderImage = getFirstImage(modules);
   if (folderImage) return folderImage;
+  return resolveImage(fallbackKey, fallbackUrl);
+};
+
+// 複数のキーワードを順番に試して、最初に見つかった画像を返す関数
+const getImageByKeywords = (modules: Record<string, { default: string }>, keywords: string[], fallbackKey: string = '', fallbackUrl: string = ''): string => {
+  for (const keyword of keywords) {
+    const result = getImageByKeyword(modules, keyword, '', '');
+    if (result) return result;
+  }
   return resolveImage(fallbackKey, fallbackUrl);
 };
 
@@ -237,13 +249,57 @@ export const IMAGES = {
   // プラン用の画像 - 各プランに適したシーン
   // plans/ フォルダ内の画像が自動的に使用されます
   planImages: {
-    // plans/ フォルダ内で trial を含むファイル名の画像
-    trial: getImageByKeyword(plansImageModules, 'trial', 'plan-trial'),
-    // plans/ フォルダ内で horse-care または horsecare を含むファイル名の画像
-    horseCare: getImageByKeyword(plansImageModules, 'horse-care', 'plan-horse-care') ||
-      getImageByKeyword(plansImageModules, 'horsecare', 'plan-horse-care'),
-    // plans/ フォルダ内で lesson を含むファイル名の画像
-    lesson: getImageByKeyword(plansImageModules, 'lesson', 'plan-lesson')
+    // 引き馬用の画像
+    leadHorse: getImageByKeyword(plansImageModules, '引き馬', 'plan-lead-horse') ||
+      getImageByKeyword(plansImageModules, 'hiki', 'plan-lead-horse'),
+    // 体験乗馬 (ショート) 用の画像
+    trial: getImageByKeyword(plansImageModules, 'ショート', 'plan-trial') ||
+      getImageByKeyword(plansImageModules, 'short', 'plan-trial'),
+    // 体験乗馬 (ロング) 用の画像（ロングコース素材.jpgを確実に取得）
+    trialLong: (() => {
+      const allImages = Object.entries(plansImageModules);
+      
+      // 全ての画像をチェック
+      for (const [path, module] of allImages) {
+        const fileName = path.split('/').pop() || '';
+        
+        // 「ロングコース素材」を含むファイルを優先
+        if (fileName.includes('ロングコース素材') || path.includes('ロングコース素材')) {
+          return module.default;
+        }
+      }
+      
+      // 「ロングコース」を含み、trialとショートを含まないファイルを探す
+      for (const [path, module] of allImages) {
+        const fileName = path.split('/').pop() || '';
+        const lower = path.toLowerCase();
+        
+        if ((fileName.includes('ロングコース') || path.includes('ロングコース')) && 
+            !lower.includes('trial') && 
+            !fileName.includes('ショート') &&
+            !path.includes('ショート')) {
+          return module.default;
+        }
+      }
+      
+      // 「ロング」を含み、trialとショートを含まないファイルを探す
+      for (const [path, module] of allImages) {
+        const fileName = path.split('/').pop() || '';
+        const lower = path.toLowerCase();
+        
+        if ((fileName.includes('ロング') || path.includes('ロング')) && 
+            !lower.includes('trial') && 
+            !fileName.includes('ショート') &&
+            !path.includes('ショート')) {
+          return module.default;
+        }
+      }
+      
+      return '';
+    })(),
+    // レッスン回数券用の画像（horsesフォルダから取得を優先、strictモードで確実に取得）
+    lesson: getImageByKeyword(horsesImageModules, 'lesson', '', '', true) ||
+      getImageByKeyword(plansImageModules, 'lesson', 'plan-lesson', '', true)
   },
 
   // 地図エリアの代替画像
@@ -280,7 +336,7 @@ export const PLANS: Plan[] = [
       '税込・保険料込'
     ],
     recommendedFor: '初めての方、小さなお子様、まずは馬に触れてみたい方',
-    imageUrl: IMAGES.planImages.trial
+    imageUrl: IMAGES.planImages.leadHorse
   },
   {
     id: 'trial-short',
@@ -308,8 +364,7 @@ export const PLANS: Plan[] = [
       'ブラッシング体験付き'
     ],
     recommendedFor: 'しっかり乗ってみたい方、走ってみたい方',
-    isPopular: true,
-    imageUrl: IMAGES.planImages.horseCare
+    imageUrl: IMAGES.planImages.trialLong
   },
   {
     id: 'lesson-ticket',

@@ -105,7 +105,7 @@ export const GeminiAdvisor: React.FC = () => {
       {/* Toggle Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="group flex items-center gap-3 bg-secondary hover:bg-red-700 text-white rounded-full p-4 shadow-xl transition-all hover:scale-105 z-50"
+        className="group flex items-center gap-3 bg-secondary hover:bg-red-700 text-white rounded-full p-4 shadow-xl transition-[background-color,transform] hover:scale-105 z-50"
       >
         <span className={`${isOpen ? 'hidden' : 'hidden md:block'} font-bold pr-2 text-sm`}>ASK AI</span>
         {isOpen ? (

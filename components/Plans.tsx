@@ -112,12 +112,12 @@ export const Plans: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.PLANS} className="py-20 md:py-32 bg-gradient-to-b from-accent to-white section-bg-anti">
+    <section id={SectionId.PLANS} className="py-12 md:py-20 lg:py-32 bg-gradient-to-b from-accent to-white section-bg-anti">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-16 md:mb-20">
-          <h4 className="text-secondary font-bold tracking-widest uppercase mb-3 text-xs md:text-sm">Plans & Pricing</h4>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6">プラン・料金</h2>
+        <div className="text-center mb-10 md:mb-16 lg:mb-20">
+          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 md:mb-3 text-xs md:text-sm">Plans & Pricing</h4>
+          <h2 className="text-2xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-4 md:mb-6 px-2">プラン・料金</h2>
           <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
           <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
             初めての方には「体験乗馬」、本格的に学びたい方には「レッスンコース」。<br />
@@ -130,7 +130,7 @@ export const Plans: React.FC = () => {
           {PLANS.map((plan, index) => (
             <div
               key={plan.id}
-              className="relative flex flex-col anti-gravity-card rounded-lg overflow-hidden transform-3d"
+              className="relative flex flex-col anti-gravity-card rounded-lg overflow-hidden"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               {/* Plan Image */}
@@ -139,7 +139,8 @@ export const Plans: React.FC = () => {
                   <img
                     src={plan.imageUrl}
                     alt={plan.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    loading="lazy"
                     onError={(e) => {
                       console.error(`Plan image for ${plan.title} failed to load:`, plan.imageUrl);
                       e.currentTarget.style.display = 'none';
@@ -194,7 +195,7 @@ export const Plans: React.FC = () => {
       {/* Plan Detail Modal */}
       {selectedPlan && PLAN_DETAILS[selectedPlan] && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
           onClick={closeModal}
         >
           <div

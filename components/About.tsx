@@ -53,17 +53,17 @@ export const About: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.ABOUT} className="py-20 md:py-32 bg-white relative overflow-hidden section-bg-anti">
+    <section id={SectionId.ABOUT} className="py-12 md:py-20 lg:py-32 bg-white relative overflow-hidden section-bg-anti">
       {/* Decorative background text */}
-      <div className="absolute top-20 left-0 text-[8rem] md:text-[10rem] font-display font-bold text-gray-50 leading-none select-none z-0 opacity-50 floating-slow">
+      <div className="absolute top-10 md:top-20 left-0 text-[4rem] md:text-[8rem] lg:text-[10rem] font-display font-bold text-gray-50 leading-none select-none z-0 opacity-30 md:opacity-50">
         WESTERN
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-16 md:mb-20">
-          <h4 className="text-secondary font-bold tracking-widest uppercase mb-3 text-xs md:text-sm">About Us</h4>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6 leading-tight">
+        <div className="text-center mb-10 md:mb-16 lg:mb-20">
+          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 md:mb-3 text-xs md:text-sm">About Us</h4>
+          <h2 className="text-2xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-4 md:mb-6 leading-tight px-2">
             カズホーストレーニングについて
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto"></div>
@@ -74,12 +74,13 @@ export const About: React.FC = () => {
           
           {/* Image Section */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl anti-gravity-card floating">
+            <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl anti-gravity-card">
               {IMAGES.about ? (
                 <img 
                   src={IMAGES.about} 
                   alt="Western riding style" 
-                  className="w-full h-auto object-cover" 
+                  className="w-full h-auto object-cover"
+                  loading="lazy" 
                   onError={(e) => {
                     console.error('About image failed to load:', IMAGES.about);
                     e.currentTarget.style.display = 'none';
@@ -113,11 +114,11 @@ export const About: React.FC = () => {
 
             {/* Feature Cards */}
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="border-l-4 border-secondary pl-6 py-4 anti-gravity-card rounded-r-lg floating-reverse">
+              <div className="border-l-4 border-secondary pl-6 py-4 anti-gravity-card rounded-r-lg">
                 <h3 className="text-xl font-bold text-primary mb-2">Communication</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">馬と向き合い、心を通わせる<br/>マンツーマン指導</p>
               </div>
-              <div className="border-l-4 border-primary pl-6 py-4 anti-gravity-card rounded-r-lg floating">
+              <div className="border-l-4 border-primary pl-6 py-4 anti-gravity-card rounded-r-lg">
                 <h3 className="text-xl font-bold text-primary mb-2">Location</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">四季を感じる明野高原の<br/>大自然と開放感</p>
               </div>
@@ -140,15 +141,15 @@ export const About: React.FC = () => {
                 return (
                   <div 
                     key={idx} 
-                    className={`relative overflow-hidden group cursor-pointer aspect-square bg-gray-100 rounded-lg anti-gravity-card transform-3d ${idx % 3 === 0 ? 'floating' : idx % 3 === 1 ? 'floating-reverse' : 'floating-slow'}`}
-                    style={{ animationDelay: `${idx * 0.1}s` }}
+                    className="relative overflow-hidden group cursor-pointer aspect-square bg-gray-100 rounded-lg anti-gravity-card"
                     onClick={() => handleGalleryClick(idx)}
                   >
                     {img ? (
                       <img 
                         src={img} 
                         alt={`Gallery ${idx + 1}`} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
                         onError={(e) => {
                           console.error(`Gallery image ${idx + 1} failed to load:`, img);
                           e.currentTarget.style.display = 'none';
@@ -194,7 +195,7 @@ export const About: React.FC = () => {
         {/* Gallery Detail Modal */}
         {selectedGalleryIndex !== null && IMAGES.aboutGallery && IMAGES.aboutGallery[selectedGalleryIndex] && (
           <div 
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
             onClick={closeModal}
           >
             <div 

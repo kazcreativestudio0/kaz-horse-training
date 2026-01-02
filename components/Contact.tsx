@@ -4,12 +4,12 @@ import { IMAGES } from '../constants';
 
 export const Contact: React.FC = () => {
   return (
-    <section id={SectionId.ACCESS} className="py-20 md:py-32 bg-white">
+    <section id={SectionId.ACCESS} className="py-12 md:py-20 lg:py-32 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         {/* Header Section */}
-        <div className="text-center mb-16 md:mb-20">
-          <h4 className="text-secondary font-bold tracking-widest uppercase mb-3 text-xs md:text-sm">Contact & Access</h4>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-6">お問い合わせ・アクセス</h2>
+        <div className="text-center mb-10 md:mb-16 lg:mb-20">
+          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 md:mb-3 text-xs md:text-sm">Contact & Access</h4>
+          <h2 className="text-2xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-4 md:mb-6 px-2">お問い合わせ・アクセス</h2>
           <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
           <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
             体験乗馬のご予約、レッスンのご相談など、お気軽にお問い合わせください。<br/>
@@ -74,11 +74,12 @@ export const Contact: React.FC = () => {
 
             {/* Map Section */}
             <div className="mt-10">
-              <div className="w-full h-48 bg-gray-800/50 relative overflow-hidden rounded-lg hover:bg-gray-800/70 transition-all duration-300 cursor-pointer group">
+              <div className="w-full h-48 bg-gray-800/50 relative overflow-hidden rounded-lg hover:bg-gray-800/70 transition-[background-color] duration-300 cursor-pointer group">
                 {IMAGES.map ? (
                   <img 
                     src={IMAGES.map} 
-                    alt="Map" 
+                    alt="Map"
+                    loading="lazy" 
                     className="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity" 
                     onError={(e) => {
                       console.error('Map image failed to load:', IMAGES.map);

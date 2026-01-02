@@ -70,11 +70,11 @@ export const Horses: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.HORSES} className="py-24 bg-primary text-white section-bg-anti relative">
+    <section id={SectionId.HORSES} className="py-12 md:py-20 lg:py-24 bg-primary text-white section-bg-anti relative">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 text-sm">Our Partners</h4>
-          <h2 className="text-3xl md:text-5xl font-display font-bold mb-6">馬たちとの出会い</h2>
+        <div className="text-center mb-10 md:mb-16">
+          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 text-xs md:text-sm">Our Partners</h4>
+          <h2 className="text-2xl md:text-5xl font-display font-bold mb-4 md:mb-6 px-2">馬たちとの出会い</h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
             カズホーストレーニングの主役たち。穏やかで人懐っこい彼らとの出会いが、あなたの心を癒します。
           </p>
@@ -84,16 +84,17 @@ export const Horses: React.FC = () => {
           {HORSES.map((horse, index) => (
             <div 
               key={horse.id} 
-              className="group cursor-pointer transform-3d"
+              className="group cursor-pointer"
               style={{ animationDelay: `${index * 0.3}s` }}
               onClick={() => handleHorseClick(horse.id)}
             >
-              <div className={`relative overflow-hidden mb-4 md:mb-6 aspect-[4/3] bg-gray-800 rounded-lg anti-gravity-card ${index % 2 === 0 ? 'floating' : 'floating-reverse'}`}>
+              <div className="relative overflow-hidden mb-4 md:mb-6 aspect-[4/3] bg-gray-800 rounded-lg anti-gravity-card">
                 {horse.imageUrl ? (
                   <img 
                     src={horse.imageUrl} 
                     alt={horse.name} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 grayscale group-hover:grayscale-0"
+                    loading="lazy"
                     onError={(e) => {
                       console.error(`Horse image for ${horse.name} failed to load:`, horse.imageUrl);
                       e.currentTarget.src = 'https://via.placeholder.com/800x600?text=Image+Loading';
@@ -113,8 +114,8 @@ export const Horses: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <div className="anti-gravity-card rounded-lg p-3 md:p-4 mt-2 md:mt-4 backdrop-blur-xl bg-white/15 border-white/20 transition-all duration-300 group-hover:bg-white/25">
-                <div className="border-l-2 border-secondary pl-2 md:pl-4 transition-all duration-300 group-hover:border-white">
+              <div className="anti-gravity-card rounded-lg p-3 md:p-4 mt-2 md:mt-4 bg-white/90 border-white/40 transition-colors duration-300 group-hover:bg-white/95">
+                <div className="border-l-2 border-secondary pl-2 md:pl-4 transition-colors duration-300 group-hover:border-white">
                   <h3 className="text-base md:text-2xl font-bold mb-1">{horse.name}</h3>
                   <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 md:mb-3">{horse.breed}</p>
                   <p className="text-xs md:text-sm text-gray-300 leading-relaxed opacity-80 group-hover:opacity-100 line-clamp-3 md:line-clamp-none">
@@ -169,7 +170,7 @@ export const Horses: React.FC = () => {
                     {/* Previous Button */}
                     <button
                       onClick={goToPrevSlide}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-[background-color] duration-300 z-10"
                       aria-label="前の画像"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -180,7 +181,7 @@ export const Horses: React.FC = () => {
                     {/* Next Button */}
                     <button
                       onClick={goToNextSlide}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-3 rounded-full shadow-lg transition-[background-color] duration-300 z-10"
                       aria-label="次の画像"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -203,7 +204,7 @@ export const Horses: React.FC = () => {
                     <button
                       key={idx}
                       onClick={() => goToSlide(idx)}
-                      className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                      className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 transition-[border-color,transform] duration-300 ${
                         currentSlideIndex === idx 
                           ? 'border-secondary scale-110' 
                           : 'border-transparent opacity-60 hover:opacity-100 hover:scale-105'
@@ -235,7 +236,7 @@ export const Horses: React.FC = () => {
       {/* Horse Detail Modal */}
       {selectedHorse && HORSE_DETAILS[selectedHorse] && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
           onClick={closeModal}
         >
           <div 
