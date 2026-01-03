@@ -7,7 +7,7 @@ export const Hero: React.FC = () => {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <section id={SectionId.HOME} className="relative min-h-screen flex items-center justify-center py-20 md:py-0 anti-gravity-bg">
+    <section id={SectionId.HOME} className="relative min-h-[70vh] md:min-h-screen flex items-center justify-center py-12 md:py-0 anti-gravity-bg">
       {/* Background Image with Overlay - 統合版 */}
       <div className="absolute inset-0 z-0 bg-primary">
         {IMAGES.hero ? (
@@ -29,10 +29,19 @@ export const Hero: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto flex flex-col items-center py-8 md:py-0 md:mt-24">
         
+        {/* Differentiation Message - Top */}
+        <div className="mb-6 md:mb-8 animate-fade-in-up">
+          <p className="text-white font-bold text-xl md:text-3xl lg:text-4xl tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+            <span className="text-secondary">東海3県で、唯一の</span>
+            <br className="md:hidden" />
+            <span className="text-white font-extrabold ml-1 md:ml-2">ウエスタン乗馬クラブ</span>
+          </p>
+        </div>
+        
         {/* Main Logo Brand Mark */}
-        <div className="w-48 md:w-64 lg:w-96 mb-6 md:mb-8 animate-fade-in-up flex justify-center">
+        <div className="w-40 md:w-56 lg:w-80 mb-4 md:mb-6 animate-fade-in-up delay-100 flex justify-center">
            {!imageError ? (
-             <div className="w-48 h-48 md:w-64 md:h-64 lg:w-96 lg:h-96 rounded-full overflow-hidden glass-logo p-3 md:p-4 lg:p-6 flex items-center justify-center">
+             <div className="w-40 h-40 md:w-56 md:h-56 lg:w-80 lg:h-80 rounded-full overflow-hidden glass-logo p-2 md:p-3 lg:p-4 flex items-center justify-center">
                <img 
                  src={IMAGES.logo} 
                  alt="Kazu Horse Training Logo" 
@@ -52,18 +61,19 @@ export const Hero: React.FC = () => {
            )}
         </div>
         
-        <div className="w-full max-w-5xl mx-auto animate-fade-in-up delay-100 px-4">
-          <p className="block mb-3 md:mb-6 font-display text-secondary font-bold tracking-widest text-xs md:text-sm drop-shadow-lg">EST. GUJO, GIFU</p>
-          <h2 className="hero-text text-xl md:text-4xl lg:text-5xl font-emotional font-semibold text-white mb-6 md:mb-12 leading-tight md:leading-relaxed tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+        <div className="w-full max-w-5xl mx-auto animate-fade-in-up delay-200 px-4">
+          <p className="block mb-2 md:mb-4 font-display text-secondary font-bold tracking-widest text-xs md:text-sm drop-shadow-lg">EST. GUJO, GIFU</p>
+          
+          <h2 className="hero-text text-lg md:text-3xl lg:text-4xl font-emotional font-semibold text-white mb-4 md:mb-8 leading-tight tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
             <div className="block">
               馬と心が通じ合う、真のホースマンシップ。
             </div>
-            <div className="block mt-2 md:mt-3 text-lg md:text-3xl lg:text-4xl font-light">
+            <div className="block mt-1 md:mt-2 text-base md:text-2xl lg:text-3xl font-light">
               明野高原の大自然の中で、新しい感動を。
             </div>
           </h2>
           
-          <div className="flex justify-center items-center animate-fade-in-up delay-200 mt-4 md:mt-8">
+          <div className="flex justify-center items-center animate-fade-in-up delay-300 mt-3 md:mt-6">
             <a href={CONTACT_INFO.phoneLink}>
               <Button variant="secondary" size="lg" className="shadow-[0_0_20px_rgba(199,0,57,0.5)] hover:shadow-[0_0_30px_rgba(199,0,57,0.7)] transition-shadow">
                 体験予約

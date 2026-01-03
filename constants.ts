@@ -74,6 +74,11 @@ const galleryImageModules = import.meta.glob<{ default: string }>(
   { eager: true }
 ) as Record<string, { default: string }>;
 
+const partnershipsImageModules = import.meta.glob<{ default: string }>(
+  './assets/local-images/partnerships/*.{png,jpg,jpeg,webp,svg,avif,JPG,PNG}',
+  { eager: true }
+) as Record<string, { default: string }>;
+
 // 各フォルダから最初の画像を取得する関数
 const getFirstImage = (modules: Record<string, { default: string }>): string => {
   const images = Object.values(modules).map((m: { default: string }) => m.default).filter(Boolean);
@@ -302,6 +307,14 @@ export const IMAGES = {
       getImageByKeyword(plansImageModules, 'lesson', 'plan-lesson', '', true)
   },
 
+  // パートナーシップ用の画像
+  // partnerships/ フォルダ内の画像が自動的に使用されます
+  partnerships: {
+    nao: getImageByKeyword(partnershipsImageModules, 'nao', 'partnership-nao'),
+    naturalHorseman: getImageByKeyword(partnershipsImageModules, 'natural-horseman', 'partnership-natural-horseman') ||
+      getImageByKeyword(partnershipsImageModules, 'natural', 'partnership-natural-horseman')
+  },
+
   // 地図エリアの代替画像
   // maps/ フォルダに入れた画像が自動的に使用されます
   map: resolveImageFromFolder(mapsImageModules, 'map')
@@ -316,8 +329,8 @@ export const CONTACT_INFO = {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'ホーム', href: `#${SectionId.HOME}` },
+  { label: 'パートナーシップ', href: `#${SectionId.PARTNERSHIPS}` },
   { label: 'ABOUT', href: `#${SectionId.ABOUT}` },
-  { label: 'NEWS', href: `#${SectionId.NEWS}` },
   { label: '料金プラン', href: `#${SectionId.PLANS}` },
   { label: '馬の紹介', href: `#${SectionId.HORSES}` },
   { label: 'アクセス', href: `#${SectionId.ACCESS}` },
@@ -330,9 +343,7 @@ export const PLANS: Plan[] = [
     price: '¥1,000',
     features: [
       'スタッフが馬を引いて馬場を1周',
-      '小さなお子様も安心',
-      '2歳から体験可能',
-      '親子乗りは +¥500',
+      '小さなお子様も安心（2歳から体験可能）',
       '税込・保険料込'
     ],
     recommendedFor: '初めての方、小さなお子様、まずは馬に触れてみたい方',
@@ -343,11 +354,9 @@ export const PLANS: Plan[] = [
     title: '体験乗馬 (ショート)',
     price: '¥4,700 / 20分',
     features: [
-      '馬に慣れるためのコース',
       'スタッフの指導付きで自分で操作',
-      '引き馬ではありません',
-      '税込・保険料込',
-      'ブラッシング体験も出来ます'
+      'ブラッシング体験も出来ます',
+      '税込・保険料込'
     ],
     recommendedFor: 'まずは馬に触れてみたい方、少しだけ乗ってみたい方',
     imageUrl: IMAGES.planImages.trial
@@ -358,10 +367,8 @@ export const PLANS: Plan[] = [
     price: '¥9,100 / 40分',
     features: [
       '軽い駈歩（かけあし）まで挑戦',
-      '馬の手入れ体験も可能',
       'マンツーマン指導',
-      '税込・保険料込',
-      'ブラッシング体験も出来ます'
+      '税込・保険料込'
     ],
     recommendedFor: 'しっかり乗ってみたい方、走ってみたい方',
     imageUrl: IMAGES.planImages.trialLong
@@ -373,9 +380,6 @@ export const PLANS: Plan[] = [
     features: [
       '1回あたり45分のレッスン',
       'マンツーマン指導',
-      '別途登録料 ¥13,200',
-      '土日利用は別途お問い合わせ',
-      '有効期限あり',
       '本格的に技術を習得'
     ],
     recommendedFor: '継続して通いたい方、ウエスタン乗馬を極めたい方',

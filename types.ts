@@ -39,6 +39,7 @@ export interface NavItem {
 
 export enum SectionId {
   HOME = 'home',
+  PARTNERSHIPS = 'partnerships',
   ABOUT = 'about',
   NEWS = 'news',
   PLANS = 'plans',

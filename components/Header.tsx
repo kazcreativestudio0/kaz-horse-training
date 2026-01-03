@@ -75,8 +75,8 @@ export const Header: React.FC = () => {
 
         {/* Mobile Nav Overlay */}
         <div 
-          className={`fixed inset-0 bg-primary/98 z-40 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          className={`fixed inset-0 bg-primary z-40 flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${
+            isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
           }`}
         >
           {NAV_ITEMS.map((item) => (

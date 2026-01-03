@@ -114,30 +114,25 @@ export const Plans: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.PLANS} className="py-12 md:py-20 lg:py-32 bg-gradient-to-b from-accent to-white section-bg-anti">
+    <section id={SectionId.PLANS} className="py-8 md:py-12 lg:py-16 bg-primary text-white section-bg-anti relative">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header Section */}
-        <div className="text-center mb-10 md:mb-16 lg:mb-20">
-          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 md:mb-3 text-xs md:text-sm">Plans & Pricing</h4>
-          <h2 className="text-2xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-4 md:mb-6 px-2">プラン・料金</h2>
-          <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
-          <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
-            初めての方には「体験乗馬」、本格的に学びたい方には「レッスンコース」。<br />
-            目的に合わせて最適なプランをお選びください。
-          </p>
+        <div className="text-center mb-10 md:mb-12">
+          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 text-sm">Plans & Pricing</h4>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 leading-tight">プラン・料金</h2>
         </div>
 
         {/* Plans Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-4 lg:gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 gap-6 md:gap-8 max-w-4xl mx-auto">
           {PLANS.map((plan, index) => (
             <div
               key={plan.id}
-              className="relative flex flex-col anti-gravity-card rounded-lg overflow-hidden"
+              className="relative flex flex-row bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition-shadow"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               {/* Plan Image */}
-              {plan.imageUrl ? (
-                <div className="relative h-32 md:h-48 overflow-hidden bg-gray-200">
+              <div className="relative w-32 md:w-40 lg:w-48 flex-shrink-0 overflow-hidden bg-gray-200">
+                {plan.imageUrl ? (
                   <img
                     src={plan.imageUrl}
                     alt={plan.title}
@@ -148,34 +143,35 @@ export const Plans: React.FC = () => {
                       e.currentTarget.style.display = 'none';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                </div>
-              ) : (
-                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">画像準備中</span>
-                </div>
-              )}
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
+                    <svg className="w-12 h-12 md:w-16 md:h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                )}
+              </div>
 
-              <div className="p-4 md:p-8 flex flex-col flex-1">
-                <h3 className="text-base md:text-2xl font-bold text-gray-800 mb-2 md:mb-3">{plan.title}</h3>
-                <p className="text-primary font-display font-bold text-xl md:text-4xl mb-4 md:mb-6">{plan.price}</p>
+              <div className="p-4 md:p-6 flex flex-col flex-1">
+                <h3 className="text-base md:text-xl font-bold text-gray-900 mb-2">{plan.title}</h3>
+                <p className="text-primary font-display font-bold text-lg md:text-2xl lg:text-3xl mb-4">{plan.price}</p>
 
-                <ul className="space-y-2 md:space-y-3 mb-6 md:mb-8 flex-1">
+                <ul className="space-y-2 mb-4 flex-1">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 md:gap-3 text-xs md:text-base text-gray-600">
-                      <span className="w-2 h-2 bg-secondary rounded-full mt-2 flex-shrink-0"></span>
+                    <li key={idx} className="flex items-start gap-2 text-sm md:text-base text-gray-700">
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
                       <span className="leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="pt-3 md:pt-4 border-t border-gray-200">
-                  <p className="text-[10px] md:text-xs text-gray-500 mb-3 md:mb-4 text-center leading-tight">{plan.recommendedFor}</p>
+                <div className="pt-4 border-t border-gray-200">
+                  <p className="text-xs md:text-sm text-gray-500 mb-3 leading-relaxed">{plan.recommendedFor}</p>
                   <Button
                     variant="outline"
                     fullWidth
                     size="sm"
-                    className="font-bold"
+                    className="font-bold text-sm md:text-base py-2 md:py-3"
                     onClick={() => handlePlanClick(plan.id)}
                   >
                     詳しく見る
@@ -187,8 +183,8 @@ export const Plans: React.FC = () => {
         </div>
 
         {/* Footer Note */}
-        <div className="mt-12 text-center">
-          <p className="text-xs md:text-sm text-gray-500 bg-white/50 px-4 py-2 rounded-lg inline-block">
+        <div className="mt-3 md:mt-4 text-center">
+          <p className="text-xs md:text-sm text-gray-200 bg-white/10 px-3 py-2 rounded-lg inline-block">
             ※ハイシーズン（GW・夏休み等）は料金が異なります。詳細はお問い合わせください。
           </p>
         </div>

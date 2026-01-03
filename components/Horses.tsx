@@ -70,17 +70,17 @@ export const Horses: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.HORSES} className="py-12 md:py-20 lg:py-24 bg-primary text-white section-bg-anti relative">
+    <section id={SectionId.HORSES} className="py-8 md:py-12 lg:py-16 bg-primary text-white section-bg-anti relative">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-10 md:mb-16">
-          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 text-xs md:text-sm">Our Partners</h4>
-          <h2 className="text-2xl md:text-5xl font-display font-bold mb-4 md:mb-6 px-2">馬たちとの出会い</h2>
-          <p className="text-gray-300 max-w-2xl mx-auto">
+        <div className="text-center mb-10 md:mb-12">
+          <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 text-sm">Our Partners</h4>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-display font-bold mb-4 leading-tight">馬たちとの出会い</h2>
+          <p className="text-gray-200 max-w-2xl mx-auto text-base md:text-lg mt-4">
             カズホーストレーニングの主役たち。穏やかで人懐っこい彼らとの出会いが、あなたの心を癒します。
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
           {HORSES.map((horse, index) => (
             <div 
               key={horse.id} 
@@ -88,7 +88,7 @@ export const Horses: React.FC = () => {
               style={{ animationDelay: `${index * 0.3}s` }}
               onClick={() => handleHorseClick(horse.id)}
             >
-              <div className="relative overflow-hidden mb-4 md:mb-6 aspect-[4/3] bg-gray-800 rounded-lg anti-gravity-card">
+              <div className="relative overflow-hidden mb-4 md:mb-6 aspect-[4/3] bg-gray-800 rounded-lg anti-gravity-card max-h-[200px] md:max-h-none">
                 {horse.imageUrl ? (
                   <img 
                     src={horse.imageUrl} 
@@ -114,11 +114,11 @@ export const Horses: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <div className="anti-gravity-card rounded-lg p-3 md:p-4 mt-2 md:mt-4 bg-white/90 border-white/40 transition-colors duration-300 group-hover:bg-white/95">
-                <div className="border-l-2 border-secondary pl-2 md:pl-4 transition-colors duration-300 group-hover:border-white">
-                  <h3 className="text-base md:text-2xl font-bold mb-1">{horse.name}</h3>
-                  <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 md:mb-3">{horse.breed}</p>
-                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed opacity-80 group-hover:opacity-100 line-clamp-3 md:line-clamp-none">
+              <div className="bg-white rounded-lg shadow-md p-4 md:p-5 mt-3 transition-shadow duration-300 group-hover:shadow-lg">
+                <div>
+                  <h3 className="text-base md:text-xl font-bold mb-2 text-gray-900">{horse.name}</h3>
+                  <p className="text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wider mb-3">{horse.breed}</p>
+                  <p className="text-sm md:text-base text-gray-700 leading-relaxed line-clamp-3 md:line-clamp-none">
                     {horse.description}
                   </p>
                 </div>
