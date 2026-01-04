@@ -269,51 +269,24 @@ export const IMAGES = {
     // 体験乗馬 (ショート) 用の画像
     trial: getImageByKeyword(plansImageModules, 'ショート', 'plan-trial') ||
       getImageByKeyword(plansImageModules, 'short', 'plan-trial'),
-    // 体験乗馬 (ロング) 用の画像（ロングコース素材.jpgを確実に取得）
-    trialLong: (() => {
-      const allImages = Object.entries(plansImageModules);
-      
-      // 全ての画像をチェック
-      for (const [path, module] of allImages) {
-        const fileName = path.split('/').pop() || '';
-        
-        // 「ロングコース素材」を含むファイルを優先
-        if (fileName.includes('ロングコース素材') || path.includes('ロングコース素材')) {
-          return module.default;
-        }
-      }
-      
-      // 「ロングコース」を含み、trialとショートを含まないファイルを探す
-      for (const [path, module] of allImages) {
-        const fileName = path.split('/').pop() || '';
-        const lower = path.toLowerCase();
-        
-        if ((fileName.includes('ロングコース') || path.includes('ロングコース')) && 
-            !lower.includes('trial') && 
-            !fileName.includes('ショート') &&
-            !path.includes('ショート')) {
-          return module.default;
-        }
-      }
-      
-      // 「ロング」を含み、trialとショートを含まないファイルを探す
-      for (const [path, module] of allImages) {
-        const fileName = path.split('/').pop() || '';
-        const lower = path.toLowerCase();
-        
-        if ((fileName.includes('ロング') || path.includes('ロング')) && 
-            !lower.includes('trial') && 
-            !fileName.includes('ショート') &&
-            !path.includes('ショート')) {
-          return module.default;
-        }
-      }
-      
-      return '';
-    })(),
-    // レッスン回数券用の画像（horsesフォルダから取得を優先、strictモードで確実に取得）
-    lesson: getImageByKeyword(horsesImageModules, 'lesson', '', '', true) ||
-      getImageByKeyword(plansImageModules, 'lesson', 'plan-lesson', '', true)
+    // 体験乗馬 (ロング) 用の画像（ロングコース素材画像を使用、他のプランで使用されていない）
+    trialLong: getImageByKeyword(plansImageModules, 'ロングコース素材', '', '', false) ||
+      getImageByKeyword(plansImageModules, 'ロング', '', '', false) ||
+      getImageByKeyword(horsesImageModules, 'IMG_4977', '', '', false) ||
+      getImageByKeyword(horsesImageModules, 'IMG_4978', '', '', false) ||
+      getFirstImage(horsesImageModules) ||
+      '',
+    // レッスン回数券用の画像（trial画像を使用）
+    lesson: getImageByKeyword(horsesImageModules, 'trial', '', '', false) ||
+      getImageByKeyword(horsesImageModules, 'horse-2', '', '', false) ||
+      getFirstImage(horsesImageModules) ||
+      '',
+    // 指導・出張・委託トレーニング用の画像（horsesフォルダから別の画像を使用）
+    dispatchTraining: getImageByKeyword(horsesImageModules, 'IMG_4975', '', '', false) ||
+      getImageByKeyword(horsesImageModules, 'IMG_4976', '', '', false) ||
+      getImageByKeyword(horsesImageModules, 'horse-1', '', '', false) ||
+      getFirstImage(horsesImageModules) ||
+      ''
   },
 
   // パートナーシップ用の画像
@@ -385,7 +358,7 @@ export const PLANS: Plan[] = [
   {
     id: 'lesson-ticket',
     title: 'レッスン回数券 (10回)',
-    price: '¥56,000 / 10回分（別途登録料 ¥13,200）',
+    price: '¥56,000 / 10回分',
     features: [
       '1回あたり45分のレッスン',
       'マンツーマン指導',
@@ -393,6 +366,18 @@ export const PLANS: Plan[] = [
     ],
     recommendedFor: '継続して通いたい方、ウエスタン乗馬を極めたい方',
     imageUrl: IMAGES.planImages.lesson
+  },
+  {
+    id: 'dispatch-training',
+    title: '指導・出張・委託トレーニング',
+    price: 'お問い合わせください',
+    features: [
+      '上級指導者資格保持者が直接指導',
+      '出張による専門指導',
+      'マンツーマン対応'
+    ],
+    recommendedFor: '乗馬クラブ・牧場関係者、専門的な指導を受けたい方',
+    imageUrl: IMAGES.planImages.dispatchTraining
   }
 ];
 

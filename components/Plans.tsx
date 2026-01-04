@@ -99,6 +99,33 @@ const PLAN_DETAILS: Record<string, {
       '個人会員制度もございます（年会費13,200円）',
       '会員様はレッスン料割引などの特典あり'
     ]
+  },
+  'dispatch-training': {
+    title: '指導・出張・委託トレーニング',
+    price: 'お問い合わせください',
+    duration: '要相談（内容により異なります）',
+    description: '上級指導者資格を持つ川島種朗が、すべての専門指導を直接担当します。本人が各自の乗馬クラブ・牧場へ出張し、ウェスタン乗馬講習会やナチュラルホースマンシップの実践指導などを行います。委託トレーニングは予約制として、基礎調教から技術向上トレーニング、問題行動の改善まで、マンツーマンで対応します。',
+    features: [
+      '上級指導者資格保持者が直接指導',
+      '出張による専門指導サービス',
+      'ウェスタン乗馬講習会の実施',
+      'ナチュラルホースマンシップの実践指導',
+      '基礎調教から技術向上トレーニングまで',
+      '問題行動の改善などのマンツーマン対応',
+      '予約制による柔軟なスケジュール',
+      '各自の乗馬クラブ・牧場への出張対応'
+    ],
+    process: 'お問い合わせ → ご相談・打ち合わせ → 日程調整 → 出張指導実施 → フォローアップ',
+    suitableFor: '乗馬クラブ・牧場関係者、専門的な指導を受けたい方、ナチュラルホースマンシップを学びたい方、基礎調教や技術向上トレーニングを希望する方におすすめです。',
+    notes: [
+      '料金・詳細はお問い合わせください',
+      '出張先の場所や内容により料金が異なります',
+      '予約制のため、事前のお問い合わせが必要です',
+      '基礎調教から技術向上トレーニングまで対応可能',
+      'マンツーマンによるきめ細かな指導を提供',
+      'ウェスタン・ブリティッシュ両方の指導に対応',
+      'ナチュラルホースマンシップの実践指導も可能'
+    ]
   }
 };
 
@@ -155,15 +182,6 @@ export const Plans: React.FC = () => {
               <div className="p-2.5 flex flex-col flex-1">
                 <h3 className="text-sm font-bold text-gray-900 mb-0.5">{plan.title}</h3>
                 <p className="text-primary font-display font-bold text-base mb-1.5">{plan.price}</p>
-
-                <ul className="space-y-0.5 mb-1.5 flex-1">
-                  {plan.features.slice(0, 2).map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-1.5 text-xs text-gray-700">
-                      <span className="w-1 h-1 bg-primary rounded-full mt-1.5 flex-shrink-0"></span>
-                      <span className="leading-tight line-clamp-2">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
 
                 <div className="pt-1.5 border-t border-gray-200">
                   <p className="text-[10px] text-gray-500 mb-1.5 leading-tight line-clamp-2">{plan.recommendedFor}</p>
