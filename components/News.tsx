@@ -16,12 +16,12 @@ export const News: React.FC = () => {
 
 
     return (
-        <section id={SectionId.NEWS} className="py-12 md:py-20 lg:py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50/30 relative overflow-hidden section-bg-anti">
+        <section id={SectionId.NEWS} className="py-12 md:py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50/30 relative overflow-hidden section-bg-anti">
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Header Section */}
-                <div className="text-center mb-10 md:mb-16 lg:mb-20">
+                <div className="text-center mb-10 md:mb-16">
                     <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 md:mb-3 text-xs md:text-sm">News</h4>
-                    <h2 className="text-2xl md:text-5xl lg:text-6xl font-display font-bold text-primary mb-4 md:mb-6 px-2">お知らせ</h2>
+                    <h2 className="text-2xl md:text-5xl font-display font-bold text-primary mb-4 md:mb-6 px-2">お知らせ</h2>
                     <div className="w-24 h-1 bg-secondary mx-auto mb-6"></div>
                     <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto">
                         カズホーストレーニングからの最新情報をお届けします

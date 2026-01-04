@@ -9,6 +9,10 @@
     <script>
       tailwind.config = {
         theme: {
+          screens: {
+            // モバイル版はデフォルト（768px未満 = スマートフォン）
+            'md': '768px',   // PC版（768px以上 = タブレット・デスクトップ）
+          },
           extend: {
             fontFamily: {
               sans: ['"Zen Kaku Gothic New"', 'sans-serif'],
@@ -52,15 +56,6 @@
         line-height: 1.5;
       }
 
-      @media (min-width: 768px) {
-        .hero-text {
-          overflow-wrap: normal;
-        }
-        .hero-text div {
-          line-height: 1.8;
-        }
-      }
-
       /* モバイルでのテキスト行数制限 */
       @media (max-width: 767px) {
         .line-clamp-3 {
@@ -68,6 +63,16 @@
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
+        }
+      }
+
+      /* PC版でのフォントサイズ強制適用 */
+      @media (min-width: 768px) {
+        .hero-text {
+          overflow-wrap: normal;
+        }
+        .hero-text div {
+          line-height: 1.8;
         }
       }
 

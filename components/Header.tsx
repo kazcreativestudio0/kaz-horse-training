@@ -43,7 +43,9 @@ export const Header: React.FC = () => {
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8 ml-auto">
+        <nav className={`hidden md:flex items-center gap-8 transition-all duration-300 ${
+          isScrolled ? 'ml-auto' : 'absolute right-4 md:right-6'
+        }`}>
           {NAV_ITEMS.map((item) => (
             <a 
               key={item.label} 

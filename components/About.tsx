@@ -5,7 +5,7 @@ import { IMAGES } from '../constants';
 export const About: React.FC = () => {
 
   return (
-    <section id={SectionId.ABOUT} className="py-8 md:py-12 lg:py-16 bg-gray-50 relative overflow-hidden section-bg-anti">
+    <section id={SectionId.ABOUT} className="py-8 md:py-12 bg-gray-50 relative overflow-hidden section-bg-anti">
       {/* Background Image */}
       {IMAGES.aboutGallery && IMAGES.aboutGallery.length > 0 && (
         <div className="absolute inset-0 z-0">
@@ -23,7 +23,7 @@ export const About: React.FC = () => {
         </div>
       )}
       {/* Decorative background text */}
-      <div className="absolute top-10 md:top-20 left-0 text-[4rem] md:text-[8rem] lg:text-[10rem] font-display font-bold bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 bg-clip-text text-transparent leading-none select-none z-0 opacity-30 md:opacity-50">
+      <div className="absolute top-10 md:top-20 left-0 text-[4rem] md:text-[8rem] font-display font-bold bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 bg-clip-text text-transparent leading-none select-none z-0 opacity-30 md:opacity-50">
         WESTERN
       </div>
 
@@ -31,7 +31,7 @@ export const About: React.FC = () => {
         {/* Header Section */}
         <div className="text-center mb-10 md:mb-12">
           <h4 className="text-gray-500 font-bold tracking-widest uppercase mb-2 text-sm">About Us</h4>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-gray-900 mb-4 leading-tight">
+          <h2 className="text-2xl md:text-4xl font-display font-bold text-gray-900 mb-4 leading-tight">
             カズホーストレーニングについて
           </h2>
         </div>
@@ -56,22 +56,22 @@ export const About: React.FC = () => {
 
         {/* Profile Section */}
         <div className="max-w-5xl mx-auto">
-          <div className="bg-white p-6 md:p-8 lg:p-10 rounded-lg">
-            <div className="text-center mb-8 md:mb-10">
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-gray-900 mb-3">
+          <div className="bg-white p-8 rounded-lg">
+            <div className="text-center mb-10">
+              <h3 className="text-3xl font-display font-bold text-gray-900 mb-3">
                 代表プロフィール
               </h3>
             </div>
             
-            <div className="flex flex-col lg:flex-row gap-8 md:gap-10 lg:gap-12 items-start">
+            <div className="flex flex-col md:flex-row gap-10 items-start">
               {/* Profile Image */}
-              <div className="w-full lg:w-1/3 relative mx-auto lg:mx-0 max-w-[280px] lg:max-w-none">
+              <div className="w-full md:w-1/3 relative mx-auto md:mx-0 max-w-[280px]">
                 <div className="relative z-10 rounded-lg overflow-hidden shadow-xl anti-gravity-card">
                   {IMAGES.about ? (
                     <img 
                       src={IMAGES.about} 
                       alt="川島種朗" 
-                      className="w-full h-auto max-h-[350px] md:max-h-[450px] lg:max-h-none object-cover"
+                      className="w-full h-auto max-h-[450px] object-cover"
                       loading="lazy" 
                       onError={(e) => {
                         console.error('About image failed to load:', IMAGES.about);
@@ -79,33 +79,33 @@ export const About: React.FC = () => {
                       }}
                     />
                   ) : (
-                    <div className="w-full aspect-[3/4] max-h-[350px] md:max-h-[450px] lg:max-h-none bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <div className="w-full aspect-[3/4] max-h-[450px] bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <span className="text-gray-400 text-sm">画像準備中</span>
                     </div>
                   )}
                 </div>
                 {/* Design accents */}
-                <div className="absolute -bottom-4 -left-4 w-2/3 h-2/3 bg-primary opacity-20 z-0 rounded-lg hidden md:block"></div>
-                <div className="absolute top-4 -right-2 w-12 h-1 bg-secondary z-20 hidden md:block"></div>
+                <div className="absolute -bottom-4 -left-4 w-2/3 h-2/3 bg-primary opacity-20 z-0 rounded-lg"></div>
+                <div className="absolute top-4 -right-2 w-12 h-1 bg-secondary z-20"></div>
               </div>
 
               {/* Profile Content */}
-              <div className="w-full lg:w-2/3 space-y-6 text-gray-700 leading-relaxed">
-                <div className="text-center lg:text-left mb-6 pb-6 border-b border-gray-200">
-                  <h4 className="text-xl md:text-2xl font-display font-bold text-gray-900 mb-2">
+              <div className="w-full md:w-2/3 space-y-6 text-gray-700 leading-relaxed">
+                <div className="text-center md:text-left mb-6 pb-6 border-b border-gray-200">
+                  <h4 className="text-2xl font-display font-bold text-gray-900 mb-2">
                     川島種朗（かわしまかずお）
                   </h4>
-                  <p className="text-sm md:text-base text-gray-600 mb-2">
+                  <p className="text-base text-gray-600 mb-2">
                     カズホーストレーニング 代表
                   </p>
-                  <p className="text-sm md:text-base text-primary font-semibold">
+                  <p className="text-base text-primary font-semibold">
                     上級指導者資格保持
                   </p>
                 </div>
 
-                <div className="space-y-6 text-base md:text-lg">
+                <div className="space-y-6 text-lg">
                   <div>
-                    <h5 className="font-bold text-gray-900 mb-3 text-lg md:text-xl">経歴</h5>
+                    <h5 className="font-bold text-gray-900 mb-3 text-xl">経歴</h5>
                     <ul className="list-disc list-inside space-y-2 ml-4">
                       <li>上級指導者資格保持</li>
                       <li>元ブリティッシュインストラクターとして長年の指導経験を持つ</li>
@@ -115,7 +115,7 @@ export const About: React.FC = () => {
                   </div>
 
                   <div>
-                    <h5 className="font-bold text-gray-900 mb-3 text-lg md:text-xl">指導方針</h5>
+                    <h5 className="font-bold text-gray-900 mb-3 text-xl">指導方針</h5>
                     <p>
                       馬の自然な習性を尊重し、ストレスをかけない方法で調教・指導を行っています。
                       「馬に乗せてもらう」のではなく、あなたが主体となって馬とコミュニケーションを取ることを大切にしています。
@@ -124,7 +124,7 @@ export const About: React.FC = () => {
                   </div>
 
                   <div>
-                    <h5 className="font-bold text-gray-900 mb-3 text-lg md:text-xl">メッセージ</h5>
+                    <h5 className="font-bold text-gray-900 mb-3 text-xl">メッセージ</h5>
                     <p className="italic text-gray-600">
                       馬との信頼関係を築くことから始めましょう。馬は私たちのパートナーであり、共に成長していく存在です。
                       明野高原の美しい自然の中で、馬と共に過ごす時間を一緒に楽しみましょう。

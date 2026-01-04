@@ -4,12 +4,12 @@ import { IMAGES } from '../constants';
 
 export const Contact: React.FC = () => {
   return (
-    <section id={SectionId.ACCESS} className="py-8 md:py-12 lg:py-16 bg-white">
+    <section id={SectionId.ACCESS} className="py-8 md:py-12 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         {/* Header Section */}
         <div className="text-center mb-10 md:mb-12">
           <h4 className="text-gray-500 font-bold tracking-widest uppercase mb-2 text-sm">Contact & Access</h4>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-gray-900 mb-4 leading-tight">お問い合わせ・アクセス</h2>
+          <h2 className="text-2xl md:text-4xl font-display font-bold text-gray-900 mb-4 leading-tight">お問い合わせ・アクセス</h2>
           <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto mt-4">
             体験乗馬のご予約、レッスンのご相談など、お気軽にお問い合わせください。<br/>
             馬の準備のため、事前のご連絡をお願いいたします。
@@ -19,7 +19,7 @@ export const Contact: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           
           {/* Contact Information */}
-          <div className="bg-primary text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg flex flex-col justify-between">
+          <div className="bg-primary text-white p-6 md:p-8 rounded-lg shadow-lg flex flex-col justify-between">
             <div>
               <h3 className="text-xl md:text-2xl font-display font-bold mb-6 md:mb-8">Contact Information</h3>
               

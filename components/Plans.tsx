@@ -114,24 +114,24 @@ export const Plans: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.PLANS} className="py-8 md:py-12 lg:py-16 bg-primary text-white section-bg-anti relative">
+    <section id={SectionId.PLANS} className="py-8 md:py-12 bg-primary text-white section-bg-anti relative">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-10 md:mb-12">
           <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 text-sm">Plans & Pricing</h4>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 leading-tight">プラン・料金</h2>
+          <h2 className="text-2xl md:text-4xl font-display font-bold text-white mb-4 leading-tight">プラン・料金</h2>
         </div>
 
         {/* Plans Grid */}
-        <div className="grid grid-cols-1 gap-6 md:gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-2 gap-4 max-w-4xl mx-auto">
           {PLANS.map((plan, index) => (
             <div
               key={plan.id}
-              className="relative flex flex-row bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition-shadow"
+              className="relative flex flex-col bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition-shadow"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               {/* Plan Image */}
-              <div className="relative w-32 md:w-40 lg:w-48 flex-shrink-0 overflow-hidden bg-gray-200">
+              <div className="relative w-full aspect-[5/3] overflow-hidden bg-gray-200">
                 {plan.imageUrl ? (
                   <img
                     src={plan.imageUrl}
@@ -145,33 +145,33 @@ export const Plans: React.FC = () => {
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
-                    <svg className="w-12 h-12 md:w-16 md:h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
                 )}
               </div>
 
-              <div className="p-4 md:p-6 flex flex-col flex-1">
-                <h3 className="text-base md:text-xl font-bold text-gray-900 mb-2">{plan.title}</h3>
-                <p className="text-primary font-display font-bold text-lg md:text-2xl lg:text-3xl mb-4">{plan.price}</p>
+              <div className="p-2.5 flex flex-col flex-1">
+                <h3 className="text-sm font-bold text-gray-900 mb-0.5">{plan.title}</h3>
+                <p className="text-primary font-display font-bold text-base mb-1.5">{plan.price}</p>
 
-                <ul className="space-y-2 mb-4 flex-1">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm md:text-base text-gray-700">
-                      <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                      <span className="leading-relaxed">{feature}</span>
+                <ul className="space-y-0.5 mb-1.5 flex-1">
+                  {plan.features.slice(0, 2).map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-1.5 text-xs text-gray-700">
+                      <span className="w-1 h-1 bg-primary rounded-full mt-1.5 flex-shrink-0"></span>
+                      <span className="leading-tight line-clamp-2">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="pt-4 border-t border-gray-200">
-                  <p className="text-xs md:text-sm text-gray-500 mb-3 leading-relaxed">{plan.recommendedFor}</p>
+                <div className="pt-1.5 border-t border-gray-200">
+                  <p className="text-[10px] text-gray-500 mb-1.5 leading-tight line-clamp-2">{plan.recommendedFor}</p>
                   <Button
                     variant="outline"
                     fullWidth
                     size="sm"
-                    className="font-bold text-sm md:text-base py-2 md:py-3"
+                    className="font-bold text-xs py-1"
                     onClick={() => handlePlanClick(plan.id)}
                   >
                     詳しく見る
@@ -289,7 +289,7 @@ export const Plans: React.FC = () => {
               </div>
 
               {/* CTA */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t">
+              <div className="flex flex-col md:flex-row gap-4 pt-6 border-t">
                 <a href={CONTACT_INFO.phoneLink} className="flex-1">
                   <Button variant="secondary" fullWidth size="lg" className="font-bold">
                     電話で予約する

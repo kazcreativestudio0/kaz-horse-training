@@ -233,6 +233,15 @@ export const IMAGES = {
   // トップページの大きな背景画像 (横長推奨)
   // hero/ フォルダに入れた画像が自動的に使用されます
   hero: resolveImageFromFolder(heroImageModules, 'hero', 'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'),
+  
+  // Heroセクション用の複数画像（スマホ版で使用）
+  // hero/ フォルダ内のすべての画像を取得し、horsesフォルダからも追加
+  heroImages: (() => {
+    const heroImgs = getAllImages(heroImageModules);
+    const horseImgs = getAllImages(horsesImageModules).slice(0, 2); // horsesフォルダから最初の2枚を取得
+    const combined = heroImgs.length > 0 ? [...heroImgs, ...horseImgs] : [resolveImageFromFolder(heroImageModules, 'hero', 'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing'), ...horseImgs];
+    return combined.length > 0 ? combined : [resolveImageFromFolder(heroImageModules, 'hero', 'https://drive.google.com/file/d/1Vh4ynOLf0SIyAnFD93UgBzSIhlXw4g83/view?usp=sharing')];
+  })(),
 
   // 「About Us」セクションの画像 (縦長推奨)
   // about/ フォルダに入れた画像が自動的に使用されます

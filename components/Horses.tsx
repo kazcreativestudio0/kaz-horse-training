@@ -70,11 +70,11 @@ export const Horses: React.FC = () => {
   };
 
   return (
-    <section id={SectionId.HORSES} className="py-8 md:py-12 lg:py-16 bg-primary text-white section-bg-anti relative">
+    <section id={SectionId.HORSES} className="py-8 md:py-12 bg-primary text-white section-bg-anti relative">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-10 md:mb-12">
           <h4 className="text-secondary font-bold tracking-widest uppercase mb-2 text-sm">Our Partners</h4>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-display font-bold mb-4 leading-tight">馬たちとの出会い</h2>
+          <h2 className="text-2xl md:text-4xl font-display font-bold mb-4 leading-tight">馬たちとの出会い</h2>
           <p className="text-gray-200 max-w-2xl mx-auto text-base md:text-lg mt-4">
             カズホーストレーニングの主役たち。穏やかで人懐っこい彼らとの出会いが、あなたの心を癒します。
           </p>
@@ -319,7 +319,7 @@ export const Horses: React.FC = () => {
               </div>
 
               {/* CTA */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t">
+              <div className="flex flex-col md:flex-row gap-4 pt-6 border-t">
                 <a href={CONTACT_INFO.phoneLink} className="flex-1">
                   <Button variant="secondary" fullWidth size="lg" className="font-bold">
                     電話で予約する
