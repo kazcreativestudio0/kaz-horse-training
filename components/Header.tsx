@@ -21,15 +21,15 @@ export const Header: React.FC = () => {
         isScrolled ? 'bg-primary shadow-lg py-2' : 'bg-transparent py-4'
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
         {/* Logo Area */}
-        <a href="#" className="flex items-center gap-2 z-50 group">
-          <div className={`transition-[height] duration-300 flex items-center ${isScrolled ? 'h-10' : 'h-16 md:h-20'}`}>
+        <a href="#" className="flex items-center gap-2 z-50 group min-w-0 flex-shrink-0 md:max-w-[300px] lg:max-w-[360px] xl:max-w-[420px]">
+          <div className={`transition-[height] duration-300 flex items-center min-w-0 ${isScrolled ? 'h-10' : 'h-16 md:h-14 lg:h-16'}`}>
             {!imageError ? (
               <img 
                 src={IMAGES.banner || IMAGES.logo} 
                 alt={APP_NAME} 
-                className="h-full w-auto object-contain drop-shadow-md"
+                className="block h-full w-auto max-w-full object-contain drop-shadow-md"
                 onError={() => setImageError(true)}
               />
             ) : (
@@ -43,9 +43,7 @@ export const Header: React.FC = () => {
         </a>
 
         {/* Desktop Nav */}
-        <nav className={`hidden md:flex items-center gap-8 transition-all duration-300 ${
-          isScrolled ? 'ml-auto' : 'absolute right-4 md:right-6'
-        }`}>
+        <nav className="hidden md:flex items-center justify-end gap-5 lg:gap-8 transition-all duration-300 ml-auto min-w-0">
           {NAV_ITEMS.map((item) => (
             <a 
               key={item.label} 
@@ -65,7 +63,7 @@ export const Header: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden z-50 text-white"
+          className="md:hidden z-50 text-white flex-shrink-0"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <div className="p-2 rounded-md hover:bg-white/10 transition-colors">
