@@ -1,6 +1,17 @@
 import React from 'react';
 import { APP_NAME, IMAGES } from '../constants';
 
+const animalHandlingInfo = [
+  ['第一種動物取扱業者の氏名又は名称', '川嶋 種朗'],
+  ['事業所の名称', 'カズホーストレーニング'],
+  ['事業所の所在地', '郡上市高鷲町鮎立5434'],
+  ['種別', '展示・訓練'],
+  ['登録番号', '第070019号・第070025号'],
+  ['登録年月日', '平成23年3月1日・平成28年3月1日'],
+  ['有効期間末日', '47907'],
+  ['動物取扱責任者', '川嶋 種朗'],
+];
+
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-primary text-gray-300 py-4 md:py-6 border-t border-white/10">
@@ -44,6 +55,37 @@ export const Footer: React.FC = () => {
         <div className="border-t border-gray-800 pt-3 md:pt-4 text-center text-xs text-gray-500">
           <p>&copy; {new Date().getFullYear()} {APP_NAME}. All rights reserved.</p>
         </div>
+
+        <section className="mt-5 md:mt-6 border-t border-white/10 pt-5 md:pt-6" aria-labelledby="animal-handling-title">
+          <div className="max-w-3xl mx-auto">
+            <div className="mb-3 text-center">
+              <p className="text-[10px] md:text-xs tracking-[0.2em] uppercase text-gray-500">HP・広告等記載事項</p>
+              <h2 id="animal-handling-title" className="mt-1 text-sm md:text-base font-bold text-white tracking-wide">
+                動物取扱業者標識
+              </h2>
+            </div>
+
+            <div className="overflow-hidden rounded border border-white/15">
+              <table className="w-full border-collapse text-xs md:text-sm">
+                <tbody>
+                  {animalHandlingInfo.map(([label, value]) => (
+                    <tr key={label} className="border-b border-white/10 last:border-b-0">
+                      <th
+                        scope="row"
+                        className="block w-full bg-white/5 px-3 py-2 text-left font-medium text-gray-400 md:table-cell md:w-1/2 md:border-r md:border-white/10 md:px-4"
+                      >
+                        {label}
+                      </th>
+                      <td className="block w-full px-3 py-2 text-left text-gray-200 md:table-cell md:w-1/2 md:px-4">
+                        {value}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
       </div>
     </footer>
   );
