@@ -35,7 +35,7 @@ export const Header: React.FC = () => {
             ) : (
               // Fallback text if image fails to load
               <div className="flex flex-col">
-                <span className="font-display font-bold text-white text-xl md:text-2xl tracking-tighter leading-none">KAZU</span>
+                <span className="font-display font-bold text-white text-xl md:text-2xl tracking-tighter leading-none">KAZ</span>
                 <span className="font-sans text-[10px] md:text-xs text-white tracking-widest opacity-80 leading-none">HORSE TRAINING</span>
               </div>
             )}

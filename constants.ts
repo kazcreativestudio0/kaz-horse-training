@@ -1,6 +1,6 @@
 import { Plan, Horse, NavItem, SectionId, NewsItem } from './types';
 
-export const APP_NAME = "KAZU HORSE TRAINING";
+export const APP_NAME = "KAZ HORSE TRAINING";
 
 // ==========================================
 // ★画像リンク自動変換機能
@@ -444,7 +444,7 @@ export const NEWS: NewsItem[] = [
 ];
 
 export const SYSTEM_INSTRUCTION = `
-あなたは岐阜県郡上市高鷲町にある乗馬クラブ「カズホーストレーニング (Kazu Horse Training)」のAIコンシェルジュです。
+あなたは岐阜県郡上市高鷲町にある乗馬クラブ「カズホーストレーニング (Kaz Horse Training)」のAIコンシェルジュです。
 以下の情報を元に、ユーザーからの質問に親しみやすく、ウエスタン乗馬の魅力を伝えながら回答してください。
 
 【クラブ概要】
