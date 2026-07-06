@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionId } from '../types';
-import { IMAGES } from '../constants';
+import { CONTACT_INFO, IMAGES } from '../constants';
 
 export const Contact: React.FC = () => {
   return (
@@ -65,6 +65,20 @@ export const Contact: React.FC = () => {
                     <p className="text-sm text-gray-200 uppercase tracking-wider mb-2">Access</p>
                     <p className="text-base md:text-lg text-gray-100 leading-relaxed">
                       東海北陸自動車道「高鷲IC」より<br/>車で5〜10分
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 md:gap-6">
+                  <div className="w-12 h-12 md:w-14 md:h-14 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-200 uppercase tracking-wider mb-2">Closed</p>
+                    <p className="text-base md:text-lg text-gray-100 leading-relaxed">
+                      定休日：{CONTACT_INFO.closedDays}
                     </p>
                   </div>
                 </div>
