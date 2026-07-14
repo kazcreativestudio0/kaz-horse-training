@@ -62,7 +62,7 @@ export const Hero: React.FC = () => {
       {/* Differentiation Message - Top Left */}
       <div className="absolute top-28 md:top-24 left-4 md:left-8 z-20 animate-fade-in-up">
         <p className="text-white font-bold text-xl md:text-2xl tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-          <span className="text-secondary">東海三県で、唯一の</span>
+          <span className="text-secondary">東海三県の</span>
           <br className="md:hidden" />
           <span className="text-white font-extrabold md:ml-2">ウエスタン乗馬クラブ</span>
         </p>

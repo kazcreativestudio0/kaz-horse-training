@@ -6,6 +6,10 @@
 
 This contains everything you need to run your app locally.
 
+## Production URL
+
+Official site: https://www.kazhorsetraining.com/
+
 View your app in AI Studio: https://ai.studio/apps/drive/14oFuTO-L0PumsIE0d9jptIQzKiHKrW_t
 
 ## Run Locally
